@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ythxvbl7u2si"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/SkillSlot.cs" id="1_asuoo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd3t8"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_color = Color(1, 0.215686, 0.121569, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SkillSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xd3t8")
+script = ExtResource("1_asuoo")
+
+[node name="Items" type="CenterContainer" parent="."]
+layout_mode = 2

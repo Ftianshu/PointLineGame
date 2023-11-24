@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqf50yl66k52"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/ItemSlot.cs" id="1_pscm7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d15th"]
+load_path = "res://.godot/imported/313.png-ee4df4b3cfbd1d2c989605c3d3cbb81e.ctex"
+
+[node name="ItemSlot" type="PanelContainer"]
+offset_right = 50.0
+offset_bottom = 50.0
+script = ExtResource("1_pscm7")
+
+[node name="Lock" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Lock"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_d15th")
+
+[node name="Items" type="CenterContainer" parent="."]
+layout_mode = 2

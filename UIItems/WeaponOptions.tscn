@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dix6mamt88kam"]
+
+[node name="WeaponOptions" type="VBoxContainer"]
+offset_top = 1.0
+offset_right = 116.0
+offset_bottom = 94.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Use"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+text = "Abondon"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 2
+text = "Cancle"

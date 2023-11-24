@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://h3hx4ndjtl4s"]
+
+[ext_resource type="Script" path="res://addons/excel_To_Txt/excel_dock.cs" id="1_d4hew"]
+
+[node name="excel_dock" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4hew")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "输入文件夹："
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Label"]
+layout_mode = 2
+offset_left = 100.0
+offset_right = 267.0
+offset_bottom = 29.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "输出文件夹："
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer/Label2"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 267.0
+offset_bottom = 29.0
+
+[node name="transform" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go"
+
+[connection signal="pressed" from="VBoxContainer/transform" to="." method="_on_pressed"]

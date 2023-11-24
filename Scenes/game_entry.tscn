@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlaiwspell1ir"]
+
+[ext_resource type="Script" path="res://Scripts/GameFramework/GameEntry.cs" id="1_ccdyu"]
+[ext_resource type="PackedScene" uid="uid://d0oo7qnu8yk43" path="res://Entities/Point/line.tscn" id="2_itagq"]
+[ext_resource type="AudioStream" uid="uid://2j51qyidl8bc" path="res://Music/Funny Casual Theme #5 (looped).wav" id="2_xdl50"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2saog"]
+emission_shape = 3
+emission_box_extents = Vector3(1200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 1.0
+radial_accel_max = 10.0
+angle_min = 10.0
+angle_max = 60.0
+scale_min = 2.0
+scale_max = 5.0
+
+[node name="GameEntry" type="Node"]
+script = ExtResource("1_ccdyu")
+
+[node name="MapRoot" type="Node" parent="."]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="MapRoot"]
+
+[node name="ColorRect" type="ColorRect" parent="MapRoot/CanvasGroup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="MapRoot/CanvasGroup"]
+position = Vector2(-600, -400)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_2saog")
+lifetime = 10.0
+visibility_rect = Rect2(0, 0, 1200, 800)
+
+[node name="SkillTimerRoot" type="Node" parent="."]
+
+[node name="EntityRoot" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="EnemyRoot" type="Node2D" parent="EntityRoot"]
+y_sort_enabled = true
+
+[node name="PointsRoot" type="Node2D" parent="EntityRoot"]
+
+[node name="FaceRoot" type="Node2D" parent="EntityRoot"]
+
+[node name="Line" parent="EntityRoot" instance=ExtResource("2_itagq")]
+
+[node name="UIRoot" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xdl50")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://kq1sgqghnro3"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.cs" id="1_yc3c8"]
+[ext_resource type="Script" path="res://Scripts/Enemy/MoveToPlayer.cs" id="2_2q13e"]
+[ext_resource type="Texture2D" uid="uid://dh336fafxj073" path="res://Sprites/Mystic/sprites/characters/slime.png" id="3_wmayu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qxfx"]
+radius = 7.07107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk5yu"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqc8y"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfaxd"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekwcr"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4kdg"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vekgx"]
+atlas = ExtResource("3_wmayu")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1lnkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk5yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqc8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfaxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekwcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4kdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vekgx")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="SlimeBlue" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 2
+input_pickable = false
+script = ExtResource("1_yc3c8")
+Speed = 50
+
+[node name="MoveToPlayer" type="Node" parent="."]
+script = ExtResource("2_2q13e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.94)
+shape = SubResource("CircleShape2D_4qxfx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.00784314, 0.196078, 1, 1)
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_1lnkp")
+animation = &"Walk"

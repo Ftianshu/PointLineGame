@@ -1,0 +1,721 @@
+[gd_scene load_steps=18 format=3 uid="uid://buo57igbk77m1"]
+
+[ext_resource type="PackedScene" uid="uid://kqf50yl66k52" path="res://UIItems/ItemSlot.tscn" id="1_6p02o"]
+[ext_resource type="Script" path="res://Scripts/UI/UIForms/BagForm.cs" id="1_rgmoa"]
+[ext_resource type="Texture2D" uid="uid://c0hhytipopyd6" path="res://Sprites/someUIs/HUD/Boxes/UI_box13-x256.png" id="2_03dy1"]
+[ext_resource type="Texture2D" uid="uid://b54n5kstcpdeh" path="res://Sprites/Persons/person0.png" id="3_3tjpu"]
+[ext_resource type="Texture2D" uid="uid://qocppkri4rtp" path="res://Sprites/someUIs/HUD/Boxes/UI_box12-x256.png" id="4_weeva"]
+[ext_resource type="Texture2D" uid="uid://deeeku14be64a" path="res://Sprites/someUIs/310.png" id="5_665a6"]
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/WeaponSlot.cs" id="5_eqbet"]
+[ext_resource type="Texture2D" uid="uid://dyj8lb687kkqs" path="res://Sprites/someUIs/311.png" id="6_wfk5r"]
+[ext_resource type="Texture2D" uid="uid://bvk4lb1mx3uw6" path="res://Sprites/someUIs/309.png" id="7_11bkk"]
+[ext_resource type="Texture2D" uid="uid://dre3kxsboao02" path="res://Sprites/someUIs/312.png" id="8_phtx1"]
+[ext_resource type="Texture2D" uid="uid://tijsj7nh4nat" path="res://Sprites/someUIs/308.png" id="9_eppdd"]
+[ext_resource type="Texture2D" uid="uid://b2oc2pnp3ph4i" path="res://Sprites/someUIs/307.png" id="10_e151u"]
+[ext_resource type="Texture2D" uid="uid://c2u5dj6yhggnl" path="res://Sprites/someUIs/313.png" id="11_8can4"]
+[ext_resource type="Texture2D" uid="uid://ctstxftfr2aqp" path="res://Sprites/Books/32.png" id="13_516lw"]
+[ext_resource type="Texture2D" uid="uid://drmw0ggrnivdt" path="res://Sprites/someUIs/HUD/Icons/Ico_exit00.png" id="13_eec1g"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no3j8"]
+texture = ExtResource("2_03dy1")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_of85r"]
+texture = ExtResource("4_weeva")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+
+[node name="Bag" type="Control" node_paths=PackedStringArray("BagRoot", "WeaponSlotRoot", "ProptiesRoot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rgmoa")
+BagRoot = NodePath("BagItems/BagRoot")
+WeaponSlotRoot = NodePath("RoleWeapon/WeaponRoot")
+ProptiesRoot = NodePath("RoleWeapon/Propties")
+
+[node name="Bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Backpack"
+
+[node name="RoleWeapon" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 54.0
+offset_right = 533.0
+offset_bottom = 558.0
+
+[node name="Panel" type="Panel" parent="RoleWeapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 381.0
+offset_bottom = 506.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_no3j8")
+
+[node name="Title" type="Label" parent="RoleWeapon"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 24.0
+offset_right = 231.0
+offset_bottom = 50.0
+text = "Role"
+
+[node name="Propties" type="VFlowContainer" parent="RoleWeapon"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 308.0
+offset_right = 366.0
+offset_bottom = 472.0
+theme_override_constants/h_separation = 125
+
+[node name="Propty" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "力量"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty2" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "体质"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty2"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty3" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "敏捷"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty3"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty4" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "精神"
+
+[node name="String" type="Label" parent="RoleWeapon/Propties/Propty4"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty5" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "魅力"
+
+[node name="String" type="Label" parent="RoleWeapon/Propties/Propty5"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty6" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "金灵根"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty6"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty7" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "木灵根"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty7"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty8" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "水灵根"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty8"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty9" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "火灵根"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty9"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="Propty10" type="Label" parent="RoleWeapon/Propties"]
+layout_mode = 2
+text = "土灵根"
+
+[node name="Num" type="Label" parent="RoleWeapon/Propties/Propty10"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 66.0
+offset_right = 254.0
+offset_bottom = 290.0
+texture = ExtResource("3_3tjpu")
+
+[node name="OtherProp" type="HBoxContainer" parent="RoleWeapon"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 447.0
+offset_right = 303.0
+offset_bottom = 487.0
+theme_override_constants/separation = 125
+
+[node name="Propty11" type="Label" parent="RoleWeapon/OtherProp"]
+layout_mode = 2
+text = "境界"
+
+[node name="String" type="Label" parent="RoleWeapon/OtherProp/Propty11"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "练气前期"
+
+[node name="Propty12" type="Label" parent="RoleWeapon/OtherProp"]
+layout_mode = 2
+text = "年龄"
+
+[node name="Num" type="Label" parent="RoleWeapon/OtherProp/Propty12"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="WeaponRoot" type="Control" parent="RoleWeapon"]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 43.0
+offset_bottom = 31.0
+
+[node name="ItemSlot4" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 46.0
+offset_top = 71.0
+offset_right = 96.0
+offset_bottom = 121.0
+script = ExtResource("5_eqbet")
+slotId = 100
+canDropType = PackedInt32Array(0)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot4/Icon"]
+layout_mode = 2
+texture = ExtResource("5_665a6")
+stretch_mode = 2
+
+[node name="ItemSlot5" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 46.0
+offset_top = 125.0
+offset_right = 96.0
+offset_bottom = 175.0
+script = ExtResource("5_eqbet")
+slotId = 101
+canDropType = PackedInt32Array(1)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot5"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot5/Icon"]
+layout_mode = 2
+texture = ExtResource("6_wfk5r")
+stretch_mode = 2
+
+[node name="ItemSlot6" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 46.0
+offset_top = 179.0
+offset_right = 96.0
+offset_bottom = 229.0
+script = ExtResource("5_eqbet")
+slotId = 102
+canDropType = PackedInt32Array(2)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot6"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot6/Icon"]
+layout_mode = 2
+texture = ExtResource("7_11bkk")
+stretch_mode = 2
+
+[node name="ItemSlot7" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 46.0
+offset_top = 233.0
+offset_right = 96.0
+offset_bottom = 283.0
+script = ExtResource("5_eqbet")
+slotId = 103
+canDropType = PackedInt32Array(3)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot7"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot7/Icon"]
+layout_mode = 2
+texture = ExtResource("8_phtx1")
+stretch_mode = 2
+
+[node name="ItemSlot3" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 277.0
+offset_top = 69.0
+offset_right = 327.0
+offset_bottom = 119.0
+script = ExtResource("5_eqbet")
+slotId = 104
+canDropType = PackedInt32Array(4)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot3/Icon"]
+layout_mode = 2
+texture = ExtResource("9_eppdd")
+stretch_mode = 2
+
+[node name="ItemSlot2" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 277.0
+offset_top = 123.0
+offset_right = 327.0
+offset_bottom = 173.0
+script = ExtResource("5_eqbet")
+slotId = 105
+canDropType = PackedInt32Array(5)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot2/Icon"]
+layout_mode = 2
+texture = ExtResource("10_e151u")
+
+[node name="ItemSlot1" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 277.0
+offset_top = 177.0
+offset_right = 327.0
+offset_bottom = 227.0
+script = ExtResource("5_eqbet")
+slotId = 106
+canDropType = PackedInt32Array(6)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot1/Icon"]
+layout_mode = 2
+texture = ExtResource("11_8can4")
+stretch_mode = 2
+
+[node name="ItemSlot0" parent="RoleWeapon/WeaponRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 277.0
+offset_top = 231.0
+offset_right = 327.0
+offset_bottom = 281.0
+script = ExtResource("5_eqbet")
+slotId = 107
+canDropType = PackedInt32Array(7)
+
+[node name="Icon" type="CenterContainer" parent="RoleWeapon/WeaponRoot/ItemSlot0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RoleWeapon/WeaponRoot/ItemSlot0/Icon"]
+layout_mode = 2
+texture = ExtResource("11_8can4")
+stretch_mode = 2
+
+[node name="BagItems" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 597.0
+offset_top = 195.0
+offset_right = 1069.0
+offset_bottom = 540.0
+
+[node name="ItemBg" type="Panel" parent="BagItems"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = -183.0
+offset_right = 601.5
+offset_bottom = 569.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_of85r")
+
+[node name="BagRoot" type="HFlowContainer" parent="BagItems"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 37.0
+offset_top = 46.0
+offset_right = 419.0
+offset_bottom = 320.0
+
+[node name="ItemSlot0" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot1" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 1
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot2" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 2
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot3" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 3
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot4" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 4
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot5" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 5
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot6" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 6
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot7" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 7
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot8" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 8
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot9" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 9
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot10" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 10
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot11" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 11
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot12" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 12
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot13" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 13
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot14" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 14
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot15" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 15
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot16" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 16
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot17" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 17
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot18" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot19" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 19
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot20" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 20
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot21" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 21
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot22" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 22
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot23" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 23
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot24" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 24
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot25" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 25
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot26" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 26
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot27" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 27
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot28" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 28
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot29" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 29
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot30" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 30
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot31" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 31
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot32" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 32
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot33" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 33
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="ItemSlot34" parent="BagItems/BagRoot" instance=ExtResource("1_6p02o")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+slotId = 34
+canDropType = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BagItems"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 1.0
+offset_right = 399.0
+offset_bottom = 25.0
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="BagItems/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_wfk5r")
+
+[node name="TextureRect2" type="TextureRect" parent="BagItems/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_e151u")
+
+[node name="TextureRect3" type="TextureRect" parent="BagItems/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_665a6")
+
+[node name="TextureRect4" type="TextureRect" parent="BagItems/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_phtx1")
+
+[node name="TextureRect5" type="TextureRect" parent="BagItems/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_11bkk")
+
+[node name="TextureRect6" type="TextureRect" parent="BagItems/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("11_8can4")
+
+[node name="TextureRect7" type="TextureRect" parent="BagItems/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("9_eppdd")
+
+[node name="TextureRect8" type="TextureRect" parent="BagItems/HBoxContainer"]
+modulate = Color(0.410156, 0.414063, 0.414063, 1)
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("13_516lw")
+
+[node name="Label" type="Label" parent="BagItems"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 323.0
+offset_right = 402.0
+offset_bottom = 349.0
+text = "0/35"
+
+[node name="Left" type="Button" parent="BagItems"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 328.0
+offset_right = 58.0
+offset_bottom = 344.0
+
+[node name="Right" type="Button" parent="BagItems"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 328.0
+offset_right = 80.0
+offset_bottom = 344.0
+
+[node name="Close" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 60.0
+offset_right = 1243.0
+offset_bottom = 316.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("13_eec1g")
+
+[connection signal="pressed" from="Close" to="." method="OnCloseBtnClick"]

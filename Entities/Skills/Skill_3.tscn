@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://do1coi4p7kkgw"]
+
+[ext_resource type="Script" path="res://Scripts/Skill/Skill.cs" id="1_8etkt"]
+[ext_resource type="Texture2D" uid="uid://k1mxj0t4mejq" path="res://Sprites/FireBullet/Effects/Red Effect Bullet Impact Explosion 32x32.png" id="2_5cysi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk473"]
+radius = 33.0
+height = 168.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vfec"]
+atlas = ExtResource("2_5cysi")
+region = Rect2(64, 146, 32, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8yvp"]
+atlas = ExtResource("2_5cysi")
+region = Rect2(96, 146, 32, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xexnd"]
+atlas = ExtResource("2_5cysi")
+region = Rect2(128, 146, 32, 79)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fng8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vfec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8yvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xexnd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Skill3" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
+input_pickable = false
+script = ExtResource("1_8etkt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 3)
+shape = SubResource("CapsuleShape2D_yk473")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, -1)
+scale = Vector2(2.1875, 2.1875)
+sprite_frames = SubResource("SpriteFrames_fng8u")
+frame_progress = 0.54516
+speed_scale = 2.0

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ibcsn5msmer"]
+
+[ext_resource type="PackedScene" uid="uid://bdxlmyix0aycl" path="res://UIForms/RoleState.tscn" id="1_ltvyt"]
+[ext_resource type="Script" path="res://Scripts/UI/UIForms/GamingUI.cs" id="1_v367w"]
+
+[node name="GamingUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v367w")
+
+[node name="RoleState" parent="." instance=ExtResource("1_ltvyt")]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 11.0
+offset_right = -915.0
+offset_bottom = -562.0
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.5
+offset_right = 31.5
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "00:00"

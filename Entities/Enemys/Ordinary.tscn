@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds07ctn638rfa"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.cs" id="1_qvs02"]
+[ext_resource type="Texture2D" uid="uid://sbxlxx1eoshc" path="res://Sprites/Circle.png" id="2_62gdx"]
+[ext_resource type="Script" path="res://Scripts/Enemy/MoveToPlayer.cs" id="3_yhlyo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qxfx"]
+radius = 5.0
+
+[node name="Slime" type="Area2D"]
+y_sort_enabled = true
+disable_mode = 2
+collision_layer = 4
+collision_mask = 11
+input_pickable = false
+script = ExtResource("1_qvs02")
+Speed = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4qxfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.1, 0.2)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_62gdx")
+
+[node name="MoveToPlayer" type="Node" parent="."]
+script = ExtResource("3_yhlyo")

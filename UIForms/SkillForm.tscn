@@ -1,0 +1,579 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6hb1wabvx2jp"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIForms/SkillForm.cs" id="1_fffr2"]
+[ext_resource type="PackedScene" uid="uid://ythxvbl7u2si" path="res://UIItems/SkillSlot.tscn" id="2_ob27k"]
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/MainSkillSlot.cs" id="3_oxo58"]
+[ext_resource type="Shader" path="res://UIForms/SkillSlot.gdshader" id="5_20e7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8hyy"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inr2n"]
+shader = ExtResource("5_20e7s")
+shader_parameter/selected = null
+
+[node name="SkillForm" type="Control" node_paths=PackedStringArray("learnedSkillRoot", "equipSkillRoot", "mainSkillRoot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fffr2")
+learnedSkillRoot = NodePath("LearnedSkills/LearnedSkill")
+equipSkillRoot = NodePath("EquipSkill")
+mainSkillRoot = NodePath("MainSkill")
+
+[node name="Bg" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = 14.0
+offset_right = 43.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "功法、技能界面"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 15.0
+offset_right = 148.0
+offset_bottom = 40.0
+text = "当前境界：炼气"
+
+[node name="MainSkill" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 50.0
+offset_right = 88.0
+offset_bottom = 590.0
+theme_override_constants/separation = 20
+
+[node name="SkillSlot0" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot0"]
+layout_mode = 2
+
+[node name="ColorRect" type="Button" parent="MainSkill/SkillSlot0/Mask"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot0/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "炼气"
+
+[node name="SkillSlot1" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot1"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot1/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot1/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "筑基"
+
+[node name="SkillSlot2" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot2"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot2/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot2/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "结丹"
+
+[node name="SkillSlot3" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot3"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot3/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot3/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "元婴"
+
+[node name="SkillSlot4" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot4"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot4/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot4/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "化神"
+
+[node name="SkillSlot5" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot5"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot5/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot5/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "炼虚"
+
+[node name="SkillSlot6" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot6"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot6/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot6"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot6/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "合体"
+
+[node name="SkillSlot7" parent="MainSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+script = ExtResource("3_oxo58")
+level = 0
+
+[node name="Mask" type="CenterContainer" parent="MainSkill/SkillSlot7"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainSkill/SkillSlot7/Mask"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Name" type="CenterContainer" parent="MainSkill/SkillSlot7"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainSkill/SkillSlot7/Name"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.435294)
+text = "大乘"
+
+[node name="LearnedSkills" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 100.0
+offset_right = 1025.0
+offset_bottom = 579.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8hyy")
+
+[node name="LearnedSkill" type="HFlowContainer" parent="LearnedSkills"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 38.0
+offset_right = 810.0
+offset_bottom = 410.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="SkillSlot0" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+material = SubResource("ShaderMaterial_inr2n")
+layout_mode = 2
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot1" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 1
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot2" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 2
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot3" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 3
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot4" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 4
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot5" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 5
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot6" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 6
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot7" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 7
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot8" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 8
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot9" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 9
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot10" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 10
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot11" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 11
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot12" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 12
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot13" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 13
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot14" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 14
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot15" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 15
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot16" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 16
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot17" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 17
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot18" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot19" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot20" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot21" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot22" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot23" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot24" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot25" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot26" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot27" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot28" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot29" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot30" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot31" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot32" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot33" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot34" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot35" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot36" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot37" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot38" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot39" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot40" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot41" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot42" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot43" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot44" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="SkillSlot45" parent="LearnedSkills/LearnedSkill" instance=ExtResource("2_ob27k")]
+layout_mode = 2
+slotId = 18
+canDropType = PackedInt32Array(0, 1)
+
+[node name="EquipSkill" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 135.0
+offset_top = 53.0
+offset_right = 135.0
+offset_bottom = 53.0
+
+[node name="0" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = -10.0
+offset_right = -10.0
+offset_bottom = 50.0
+theme_override_constants/separation = 15
+
+[node name="1" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = -3.0
+offset_top = 70.0
+offset_right = 6.0
+offset_bottom = 120.0
+theme_override_constants/separation = 15
+
+[node name="2" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = -9.0
+offset_top = 141.0
+offset_right = 12.0
+offset_bottom = 191.0
+theme_override_constants/separation = 15
+
+[node name="3" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = -4.0
+offset_top = 210.0
+offset_right = 10.0
+offset_bottom = 260.0
+theme_override_constants/separation = 15
+
+[node name="4" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = -9.0
+offset_top = 280.0
+offset_right = 10.0
+offset_bottom = 330.0
+theme_override_constants/separation = 15
+
+[node name="5" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = 2.0
+offset_top = 350.0
+offset_right = 14.0
+offset_bottom = 400.0
+theme_override_constants/separation = 15
+
+[node name="6" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_top = 420.0
+offset_right = 8.0
+offset_bottom = 470.0
+theme_override_constants/separation = 15
+
+[node name="7" type="HBoxContainer" parent="EquipSkill"]
+visible = false
+layout_mode = 2
+offset_left = 2.0
+offset_top = 490.0
+offset_right = 15.0
+offset_bottom = 540.0
+theme_override_constants/separation = 15
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 20.0
+offset_right = 1087.0
+offset_bottom = 50.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 922.0
+offset_top = 516.0
+offset_right = 979.0
+offset_bottom = 551.0
+text = "修炼"
+
+[connection signal="pressed" from="MainSkill/SkillSlot0/Mask/ColorRect" to="." method="ShowOrHideEquipSkills" binds= [0]]
+[connection signal="pressed" from="Close" to="." method="OnClose"]

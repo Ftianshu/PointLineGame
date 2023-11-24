@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70m8bh1jmwp0"]
+
+[ext_resource type="Texture2D" uid="uid://vnka683emy1o" path="res://Sprites/someUIs/HUD/Boxes/UI_box00-x128.png" id="1_eowq8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jtti7"]
+texture = ExtResource("1_eowq8")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+
+[node name="WeaponDesc" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -902.0
+offset_bottom = -468.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 252.0
+offset_bottom = 223.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jtti7")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 234.0
+offset_bottom = 217.0
+
+[node name="Name" type="Label" parent="Container"]
+layout_mode = 2
+text = "Name"
+
+[node name="Desc" type="Label" parent="Container"]
+layout_mode = 2
+text = "Desc"
+
+[node name="Propty" type="Label" parent="Container"]
+layout_mode = 2
+text = "Propty"
+
+[node name="WeaponIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = -12.0
+offset_right = 268.0
+offset_bottom = 33.0

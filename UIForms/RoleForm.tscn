@@ -1,0 +1,409 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgcnoyopehvgu"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIForms/RoleForm.cs" id="1_i7fyf"]
+[ext_resource type="Texture2D" uid="uid://ci2lne4vrnmcq" path="res://Sprites/Persons/person1.png" id="3_jcy16"]
+[ext_resource type="Texture2D" uid="uid://ci3pfbv12yary" path="res://Sprites/Persons/person2.png" id="4_48o6r"]
+[ext_resource type="Texture2D" uid="uid://b54n5kstcpdeh" path="res://Sprites/Persons/person0.png" id="4_akvon"]
+
+[node name="RoleForm" type="Control" node_paths=PackedStringArray("leftPoint", "proptyLabels")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i7fyf")
+leftPoint = NodePath("Bg/Base/Points")
+proptyLabels = [NodePath("Bg/Base/BaseProp/Strength/Num"), NodePath("Bg/Base/BaseProp/Physique/Num"), NodePath("Bg/Base/BaseProp/Agile/Num"), NodePath("Bg/Base/BaseProp/Soul/Num"), NodePath("Bg/Base/BaseProp/Charm/Num"), NodePath("Bg/Base/BaseProp/MetalsRoot/Num"), NodePath("Bg/Base/BaseProp/WoodRoot/Num"), NodePath("Bg/Base/BaseProp/WaterRoot/Num"), NodePath("Bg/Base/BaseProp/FireRoot/Num"), NodePath("Bg/Base/BaseProp/SoilRoot/Num")]
+
+[node name="Bg" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 112.0
+offset_right = 876.0
+offset_bottom = 586.0
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="Base" type="ColorRect" parent="Bg"]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 47.0
+offset_right = 509.0
+offset_bottom = 392.0
+color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="BaseProp" type="GridContainer" parent="Bg/Base"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 42.0
+offset_right = 184.0
+offset_bottom = 158.0
+
+[node name="Strength" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "Strength"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/Strength"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/Strength/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/Strength/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="Physique" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "Physique"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/Physique"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/Physique/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/Physique/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="Agile" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "Agile"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/Agile"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/Agile/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/Agile/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="Soul" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "Soul"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/Soul"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/Soul/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/Soul/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="Charm" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "Charm"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/Charm"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/Charm/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/Charm/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="MetalsRoot" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "MetalsRoot"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/MetalsRoot"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/MetalsRoot/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/MetalsRoot/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="WoodRoot" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "WoodRoot"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/WoodRoot"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 185.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/WoodRoot/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/WoodRoot/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="WaterRoot" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "WaterRoot"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/WaterRoot"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 185.0
+offset_bottom = 56.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/WaterRoot/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/WaterRoot/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="FireRoot" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "FireRoot"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/FireRoot"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 185.0
+offset_bottom = 56.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/FireRoot/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/FireRoot/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="SoilRoot" type="Label" parent="Bg/Base/BaseProp"]
+layout_mode = 2
+text = "SoilRoot"
+
+[node name="Num" type="Label" parent="Bg/Base/BaseProp/SoilRoot"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -60.0
+offset_right = 185.0
+offset_bottom = -34.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sub" type="Button" parent="Bg/Base/BaseProp/SoilRoot/Num"]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 22.0
+
+[node name="Add" type="Button" parent="Bg/Base/BaseProp/SoilRoot/Num"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 22.0
+
+[node name="Title" type="Label" parent="Bg/Base"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 93.0
+offset_bottom = 38.0
+text = "PorpPoint"
+
+[node name="Roll" type="Button" parent="Bg/Base"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 6.0
+offset_right = 229.0
+offset_bottom = 37.0
+text = "Roll"
+
+[node name="Points" type="Label" parent="Bg/Base"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 11.0
+offset_right = 162.0
+offset_bottom = 37.0
+text = "100"
+
+[node name="TabContainer" type="TabContainer" parent="Bg"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 100.0
+offset_right = 233.0
+offset_bottom = 436.0
+clip_tabs = false
+
+[node name="Role0" type="TextureRect" parent="Bg/TabContainer"]
+layout_mode = 2
+texture = ExtResource("4_akvon")
+
+[node name="Role1" type="TextureRect" parent="Bg/TabContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_jcy16")
+
+[node name="Role2" type="TextureRect" parent="Bg/TabContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_48o6r")
+
+[node name="Confirm" type="Button" parent="Bg"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 403.0
+offset_right = 507.0
+offset_bottom = 436.0
+text = "Confirm"
+
+[node name="TextEdit" type="TextEdit" parent="Bg"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 46.0
+offset_right = 158.0
+offset_bottom = 84.0
+placeholder_text = "YourName"
+
+[connection signal="pressed" from="Bg/Base/BaseProp/Strength/Num/Sub" to="." method="OnSubBtnClick" binds= [0]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Strength/Num/Add" to="." method="OnAddBtnClick" binds= [0]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Physique/Num/Sub" to="." method="OnSubBtnClick" binds= [1]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Physique/Num/Add" to="." method="OnAddBtnClick" binds= [1]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Agile/Num/Sub" to="." method="OnSubBtnClick" binds= [2]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Agile/Num/Add" to="." method="OnAddBtnClick" binds= [2]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Soul/Num/Sub" to="." method="OnSubBtnClick" binds= [3]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Soul/Num/Add" to="." method="OnAddBtnClick" binds= [3]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Charm/Num/Sub" to="." method="OnSubBtnClick" binds= [4]]
+[connection signal="pressed" from="Bg/Base/BaseProp/Charm/Num/Add" to="." method="OnAddBtnClick" binds= [4]]
+[connection signal="pressed" from="Bg/Base/BaseProp/MetalsRoot/Num/Sub" to="." method="OnSubBtnClick" binds= [5]]
+[connection signal="pressed" from="Bg/Base/BaseProp/MetalsRoot/Num/Add" to="." method="OnAddBtnClick" binds= [5]]
+[connection signal="pressed" from="Bg/Base/BaseProp/WoodRoot/Num/Sub" to="." method="OnSubBtnClick" binds= [6]]
+[connection signal="pressed" from="Bg/Base/BaseProp/WoodRoot/Num/Add" to="." method="OnAddBtnClick" binds= [6]]
+[connection signal="pressed" from="Bg/Base/BaseProp/WaterRoot/Num/Sub" to="." method="OnSubBtnClick" binds= [7]]
+[connection signal="pressed" from="Bg/Base/BaseProp/WaterRoot/Num/Add" to="." method="OnAddBtnClick" binds= [7]]
+[connection signal="pressed" from="Bg/Base/BaseProp/FireRoot/Num/Sub" to="." method="OnSubBtnClick" binds= [8]]
+[connection signal="pressed" from="Bg/Base/BaseProp/FireRoot/Num/Add" to="." method="OnAddBtnClick" binds= [8]]
+[connection signal="pressed" from="Bg/Base/BaseProp/SoilRoot/Num/Sub" to="." method="OnSubBtnClick" binds= [9]]
+[connection signal="pressed" from="Bg/Base/BaseProp/SoilRoot/Num/Add" to="." method="OnAddBtnClick" binds= [9]]
+[connection signal="pressed" from="Bg/Base/Roll" to="." method="OnRollDataBtnClick"]
+[connection signal="tab_changed" from="Bg/TabContainer" to="." method="OnPlayerTabChanged"]
+[connection signal="pressed" from="Bg/Confirm" to="." method="OnConfirmBtnClick"]

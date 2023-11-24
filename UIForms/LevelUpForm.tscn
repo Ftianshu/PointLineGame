@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://sh67ik0kv7bm"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIForms/LevelUpForm.cs" id="1_gvg7u"]
+[ext_resource type="PackedScene" uid="uid://yfv221d1qayp" path="res://UIItems/LevelUpOption.tscn" id="2_o26i6"]
+[ext_resource type="Shader" path="res://UIItems/LevelUpOption.gdshader" id="3_2gd86"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3uwa"]
+shader = ExtResource("3_2gd86")
+shader_parameter/mouseIn = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3umov"]
+shader = ExtResource("3_2gd86")
+shader_parameter/mouseIn = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqf0d"]
+shader = ExtResource("3_2gd86")
+shader_parameter/mouseIn = null
+
+[node name="LevelUpForm" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gvg7u")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 49.0
+offset_right = 38.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "境界提升"
+
+[node name="LevelUp" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -150.0
+offset_right = 400.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="LevelUpOption" parent="LevelUp" instance=ExtResource("2_o26i6")]
+material = SubResource("ShaderMaterial_v3uwa")
+layout_mode = 2
+
+[node name="LevelUpOption2" parent="LevelUp" instance=ExtResource("2_o26i6")]
+material = SubResource("ShaderMaterial_3umov")
+layout_mode = 2
+
+[node name="LevelUpOption3" parent="LevelUp" instance=ExtResource("2_o26i6")]
+material = SubResource("ShaderMaterial_yqf0d")
+layout_mode = 2
