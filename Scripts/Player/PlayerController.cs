@@ -28,8 +28,6 @@ namespace Survival
 
         private bool isRushOk = true;
 
-        private Node2D PointPosition;
-
 
         public override void _Ready()
         {
@@ -43,7 +41,6 @@ namespace Survival
             Timer rushingTimer = GetNode<Timer>("RushingTimer");
             rushingTimer.Timeout += RushingFinish;
             rushingTimer.WaitTime = RushDuration;
-            PointPosition = GetNode<Node2D>("PointPosition");
         }
 
         private void RushFinish()
@@ -89,7 +86,7 @@ namespace Survival
                 // }
 
                 MoveAndSlide();
-                AddPointToLine(PointPosition.GlobalPosition);
+                AddPointToLine(Position);
 
                 return;
             }
@@ -126,9 +123,9 @@ namespace Survival
             // GameEntry.Entity.AddLinePoint(Position);
             // GameEntry.Entity.CreatePoint("points", Position);
 
-            MoveAndCollide(Velocity * (float)delta);
-            // MoveAndSlide();
-            AddPointToLine(PointPosition.GlobalPosition);
+            //MoveAndCollide(Velocity * (float)delta);
+            MoveAndSlide();
+            AddPointToLine(Position);
 
             //Position += Velocity * (float)delta;
 

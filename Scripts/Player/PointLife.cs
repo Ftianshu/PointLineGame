@@ -9,6 +9,8 @@ namespace Survival
 
         private double time = 0;
 
+        private float disabledTime = 0.5f;
+
         [Signal]
         public delegate void pointDestroyEventHandler();
 
@@ -20,7 +22,6 @@ namespace Survival
             Connect("pointDestroy", new Callable(GameEntry.Entity.line, "PointDestroy"));
             Connect("playerEnter", new Callable(GameEntry.Entity.line, "OnPlayerEnter"));
             BodyEntered += OnPlayerEnter;
-            GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
         }
 
         public void OnPlayerEnter(Node2D body)
@@ -39,6 +40,12 @@ namespace Survival
                 QueueFree();
                 EmitSignal("pointDestroy");
             }
+            else if (time > disabledTime && GetNode<CollisionShape2D>("CollisionShape2D").Disabled)
+            {
+
+                GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
+            }
+
         }
 
 

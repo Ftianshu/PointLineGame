@@ -6,6 +6,7 @@
 script = ExtResource("1_adbv4")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 width = 6.0
 
 [node name="Timers" type="Node" parent="."]
