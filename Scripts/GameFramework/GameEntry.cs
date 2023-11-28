@@ -50,6 +50,12 @@ namespace Survival
             private set;
         }
 
+        public static FaceManager Face
+        {
+            get;
+            private set;
+        }
+
         public override void _Ready()
         {
             //初始化，加载静态资源
@@ -79,6 +85,7 @@ namespace Survival
             Entity = new EntityManager(GetNode<Node>("EntityRoot"), GetNode<Node>("EntityRoot/EnemyRoot"));
             Player = new PlayerManager();
             Skill = new SkillManager(GetNode<Node>("SkillTimerRoot"));
+            Face = new FaceManager();
         }
 
         private void PreLoadData()

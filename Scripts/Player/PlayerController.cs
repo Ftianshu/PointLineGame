@@ -7,7 +7,7 @@ namespace Survival
     public partial class PlayerController : CharacterBody2D
     {
         [Export]
-        public float MaxSpeed = 200; // How fast the player will move (pixels/sec).
+        public float MaxSpeed = 400; // How fast the player will move (pixels/sec).
 
         public float RushSpeed = 800;
 
@@ -28,6 +28,7 @@ namespace Survival
 
         private bool isRushOk = true;
 
+        private int currentLine;
 
         public override void _Ready()
         {
@@ -41,6 +42,7 @@ namespace Survival
             Timer rushingTimer = GetNode<Timer>("RushingTimer");
             rushingTimer.Timeout += RushingFinish;
             rushingTimer.WaitTime = RushDuration;
+            currentLine = GameEntry.Face.GenerateLineId();
         }
 
         private void RushFinish()
@@ -135,8 +137,9 @@ namespace Survival
 
         private void AddPointToLine(Vector2 position)
         {
-            GameEntry.Entity.AddLinePoint(position);
-            GameEntry.Entity.CreatePoint("points", position);
+            // GameEntry.Entity.AddLinePoint(position);
+            // GameEntry.Entity.CreatePoint("points", position);
+            GameEntry.Face.AddPoint(position, (int)FaceId.PlayerFace, currentLine);
         }
     }
 }

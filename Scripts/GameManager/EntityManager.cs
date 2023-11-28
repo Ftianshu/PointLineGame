@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System.Collections.Generic;
 
 namespace Survival
 {
@@ -11,7 +11,9 @@ namespace Survival
         private Node PointsRoot;
         private Node FaceRoot;
 
-        public Line line;
+        public Node LineRoot;
+
+        private Dictionary<int, Node> lines = new Dictionary<int, Node>();
         private int currentMap = 0;
 
         public EntityManager(Node entityRoot, Node enemyRoot)
@@ -20,7 +22,7 @@ namespace Survival
             EnemyRoot = enemyRoot;
             PointsRoot = entityRoot.FindChild("PointsRoot");
             FaceRoot = entityRoot.FindChild("FaceRoot");
-            line = (Line)entityRoot.FindChild("Line");
+            LineRoot = entityRoot.FindChild("LineRoot");
         }
 
         public Node CreateEntity(string AssetName)
@@ -58,14 +60,6 @@ namespace Survival
         //     Points.AddChild(collision);
         // }
 
-        public Node CreateLine(string AssetName, Vector2 position = default(Vector2))
-        {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset(AssetName));
-            Node n = entity.Instantiate();
-            PointsRoot.AddChild(n);
-            return n;
-        }
-
         public Node CreateEnemy(string AssetName)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEnemyAsset(AssetName));
@@ -100,6 +94,21 @@ namespace Survival
             EntityRoot.AddChild(n);
         }
 
+        public void CreateLine(int lineId)
+        {
+            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
+            Node n = entity.Instantiate();
+            LineRoot.AddChild(n);
+            n.Name = lineId.ToString();
+            lines.Add(lineId, n);
+        }
+
+        public void DelLine(int lineId)
+        {
+            lines[lineId].QueueFree();
+            lines.Remove(lineId);
+        }
+
         public Node CreateMainSkillBook(int id)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetItemAsset("MainSkillBook"));
@@ -118,9 +127,9 @@ namespace Survival
             //line.ClearPoints();
         }
 
-        public void AddLinePoint(Vector2 position)
+        public void AddLinePoint(Vector2 position, int lineId)
         {
-            line.AddPoint(position);
+            (lines[lineId] as Line).AddPoint(position);
         }
 
         public void CreateFace(string AssetName, int startPointIndex)

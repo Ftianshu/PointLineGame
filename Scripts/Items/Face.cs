@@ -17,11 +17,9 @@ namespace Survival
 
         public override void _Ready()
         {
-            // GD.Print(points.Length);
             polygonPhysics = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
             polygonShape = GetNode<Polygon2D>("Polygon2D");
             polygonPhysics.SetDeferred("polygon", points);
-            //polygonPhysics.Polygon = (Vector2[])points.Clone();
             polygonShape.Polygon = points;
             GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
             GameEntry.Entity.CreateHud(GetSquare(), GetCenter());

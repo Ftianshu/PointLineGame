@@ -19,17 +19,17 @@ namespace Survival
 
         public override void _Ready()
         {
-            Connect("pointDestroy", new Callable(GameEntry.Entity.line, "PointDestroy"));
-            Connect("playerEnter", new Callable(GameEntry.Entity.line, "OnPlayerEnter"));
-            BodyEntered += OnPlayerEnter;
+            // Connect("pointDestroy", new Callable(GameEntry.Entity.line, "PointDestroy"));
+            // Connect("playerEnter", new Callable(GameEntry.Entity.line, "OnPlayerEnter"));
+            // BodyEntered += OnPlayerEnter;
         }
 
         public void OnPlayerEnter(Node2D body)
         {
-            GD.Print(body.Name + GetIndex());
-            GameEntry.Entity.CreateFace("face", GetIndex());
-            GameEntry.Entity.ClearPoints();
-            EmitSignal("playerEnter");
+            // GD.Print(body.Name + GetIndex());
+            // GameEntry.Entity.CreateFace("face", GetIndex());
+            // GameEntry.Entity.ClearPoints();
+            // EmitSignal("playerEnter");
         }
 
         public override void _Process(double delta)
@@ -40,11 +40,11 @@ namespace Survival
                 QueueFree();
                 EmitSignal("pointDestroy");
             }
-            else if (time > disabledTime && GetNode<CollisionShape2D>("CollisionShape2D").Disabled)
-            {
+            // else if (time > disabledTime && GetNode<CollisionShape2D>("CollisionShape2D").Disabled)
+            // {
 
-                GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
-            }
+            //     GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
+            // }
 
         }
 
