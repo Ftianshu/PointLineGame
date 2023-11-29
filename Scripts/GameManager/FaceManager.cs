@@ -89,7 +89,7 @@ namespace Survival
             //GD.Print("addPoint" + "  x:" + indexX + "  y:" + indexY);
             faces[faceId][indexX][indexY] = true;
 
-            //不连续需要补点
+            //不连续需要补点,保证线条的连续性
             if (Mathf.Abs(indexX - lastPoint[faceId].x) + Mathf.Abs(indexY - lastPoint[faceId].y) > 1)
             {
                 if (indexX < lastPoint[faceId].x)
@@ -129,10 +129,19 @@ namespace Survival
             {
                 // TODO: 生成平面
                 // GD.Print("生成平面");
+                GD.Print(closedShapePoints.Count);
+                GameEntry.Entity.CreateFace("face", closedShapePoints.ToArray());
                 // 清楚所有点、线
                 ClearFacePoints(faceId);
                 ClearFaceLines(faceId);
             }
+        }
+
+        public void DelPoint(Vector2 point, int faceId, int lineId)
+        {
+            int indexX = (int)point.X + 270;
+            int indexY = (int)point.Y + 270;
+            faces[faceId][indexX][indexY] = false;
         }
 
         public bool IsFormFace(int faceId)
@@ -147,40 +156,44 @@ namespace Survival
             {
                 map[i] = (bool[])faces[faceId][i].Clone();
             }
-            // closedShapePoints.Clear();
+            closedShapePoints.Clear();
 
             return DFS(map, (x, y), faceWidth, faceHeight);
         }
 
         private bool DFS(bool[][] map, (int row, int col) start, int rows, int cols)
         {
-            // 深度优先搜索
 
             // 使用栈来模拟递归调用
 
             Stack<(int row, int col)> stack = new Stack<(int, int)>();
             Dictionary<(int row, int col), int> pointsCount = new Dictionary<(int row, int col), int>();
             stack.Push(start);
+            int popCount = 0;
 
             while (stack.Count > 0)
             {
                 var current = stack.Pop();
                 int row = current.row;
                 int col = current.col;
-                if (pointsCount.ContainsKey(current))
+                if (pointsCount.ContainsKey(current) && pointsCount[current]++ >= 1)
                 {
-                    if (pointsCount[current]++ >= 1)
-                        return true;
+                    return true;
                 }
 
                 if (row < 0 || row >= rows || col < 0 || col >= cols || !map[row][col])
                 {
-
+                    popCount++;
                     continue;
                 }
 
                 map[row][col] = false; // 标记已访问
-                //closedShapePoints.Add(new Vector2(row, col)); // 将点添加到列表
+                // if (popCount >= 4)
+                // {
+                //     closedShapePoints.Clear();
+                // }
+                // popCount = 0;
+                closedShapePoints.Add(new Vector2(row - 270, col - 270)); // 将点添加到列表
 
                 // 将相邻的点入栈
                 stack.Push((row + 1, col));
@@ -189,11 +202,6 @@ namespace Survival
                 stack.Push((row, col - 1));
 
                 pointsCount.Add(current, 0);
-                // if (start == (row + 1, col) || start == (row - 1, col) || start == (row, col + 1) || start == (row, col - 1))
-                // {
-                //     if (count++ == 1)
-                //         return true;
-                // }
             }
 
             return false;

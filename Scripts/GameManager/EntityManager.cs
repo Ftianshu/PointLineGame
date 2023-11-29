@@ -132,15 +132,11 @@ namespace Survival
             (lines[lineId] as Line).AddPoint(position);
         }
 
-        public void CreateFace(string AssetName, int startPointIndex)
+        public void CreateFace(string AssetName, Vector2[] points)
         {
-            if (FaceRoot.GetChildCount() > 0)
-            {
-                return;
-            }
             var entity = GD.Load<PackedScene>(AssetUtility.GetFaceAsset(AssetName));
             Face n = (Face)entity.Instantiate();
-            n.points = GetFacePoints(startPointIndex);
+            n.points = points;
             FaceRoot.AddChild(n);
         }
 
