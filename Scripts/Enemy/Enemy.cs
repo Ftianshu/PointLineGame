@@ -70,12 +70,13 @@ namespace Survival
 
         public void OnBeAttacked(Area2D area)
         {
-            if (area.Name != "face")
-            {
-                return;
-            }
-            GD.Print(area.Name);
-            HP -= 5;
+            // if (area.Name != "face")
+            // {
+            //     return;
+            // }
+            Face face = area as Face;
+            //GD.Print(area.Name);
+            HP -= face.GetDamage();
         }
 
         private bool IsDead()

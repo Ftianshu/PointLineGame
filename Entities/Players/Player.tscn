@@ -10,8 +10,8 @@ collision_mask = 0
 script = ExtResource("1_o5d5y")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(0, 17)
-polygon = PackedVector2Array(0, -31, -8, -14, 0, -19, 7, -14)
+position = Vector2(0, 19)
+polygon = PackedVector2Array(0, -31, -8, -14, 0, -19, 8, -14)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 100
@@ -21,7 +21,7 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_i1c6g")
 
 [node name="RushTimer" type="Timer" parent="."]

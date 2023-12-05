@@ -11,6 +11,8 @@ namespace Survival
 
         public float RushSpeed = 800;
 
+        public bool IsLinking = false;
+
         public float Acceleration = 0.5f;
 
         public float DeAcceleration = 1f;
@@ -24,18 +26,14 @@ namespace Survival
 
         private float velocity = 0;
 
-        private bool isRushing = false;
+        public bool isRushing = false;
 
         private bool isRushOk = true;
 
-        private int currentLine;
+        public int currentLine;
 
         public override void _Ready()
         {
-            //GetNode<Camera2D>("Camera2D").MakeCurrent();
-            //GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play();
-            //PointCreatePoint = GetNode<Node2D>("PointCreatePoint");
-            //GameEntry.Entity.CreateLine("line");
             Timer rushTimer = GetNode<Timer>("RushTimer");
             rushTimer.Timeout += RushFinish;
             rushTimer.WaitTime = RushCD;
@@ -53,6 +51,7 @@ namespace Survival
         private void RushingFinish()
         {
             isRushing = false;
+            GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
         }
 
         public override void _Process(double delta)
@@ -65,6 +64,8 @@ namespace Survival
             {
                 isRushing = true;
                 isRushOk = false;
+                currentLine++;
+                GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                 GetNode<Timer>("RushTimer").Start();
                 GetNode<Timer>("RushingTimer").Start();
             }
@@ -78,17 +79,7 @@ namespace Survival
 
                 Velocity = vector;
 
-                // Vector2 distance = vector * (float)delta;
-
-                // for (int i = 0; i < 5; i++)
-                // {
-                //     Vector2 position = distance / 5 * i + Position;
-                //     GameEntry.Entity.AddLinePoint(position);
-                //     GameEntry.Entity.CreatePoint("points", position);
-                // }
-
                 MoveAndSlide();
-                AddPointToLine(Position);
 
                 return;
             }
@@ -122,17 +113,10 @@ namespace Survival
             vector2.X = velocity * MathF.Sin(Rotation);
 
             Velocity = vector2;
-            // GameEntry.Entity.AddLinePoint(Position);
-            // GameEntry.Entity.CreatePoint("points", Position);
 
-            //MoveAndCollide(Velocity * (float)delta);
             MoveAndSlide();
             AddPointToLine(Position);
 
-            //Position += Velocity * (float)delta;
-
-
-            //CallDeferred("AddPointToLine", Position);
         }
 
         private void AddPointToLine(Vector2 position)

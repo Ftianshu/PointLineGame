@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgua1lxgecgc2"]
 
-[ext_resource type="Script" path="res://Scripts/Player/PointLife.cs" id="1_nrkhr"]
+[ext_resource type="Script" path="res://Scripts/Player/Point.cs" id="1_nxocq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivi5w"]
-radius = 3.0
+radius = 1.0
 
 [node name="Points" type="Area2D"]
 collision_layer = 2
 input_pickable = false
-script = ExtResource("1_nrkhr")
+script = ExtResource("1_nxocq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ivi5w")

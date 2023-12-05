@@ -76,6 +76,40 @@ namespace Survival
             square += (points[0].Y + points[points.Length - 1].Y) / 2 * (points[0].X - points[points.Length - 1].X);
             return (int)Mathf.Abs(square / 100);
         }
+
+        public float GetDamage()
+        {
+            switch (GameEntry.Player.faceDamageType)
+            {
+                case FaceDamageType.BaseMode:
+                    {
+                        return GameEntry.Player.faceDamage;
+                    }
+                case FaceDamageType.IncreaseWithArea:
+                    {
+                        int square = GetSquare();
+
+                        return square / 50 * GameEntry.Player.faceDamage;
+                    }
+                case FaceDamageType.DecreaseWithArea:
+                    {
+                        return GameEntry.Player.faceDamage;
+                    }
+                case FaceDamageType.IncreaseWithGirth:
+                    {
+                        return GameEntry.Player.faceDamage;
+                    }
+                case FaceDamageType.DecreaseWithGirth:
+                    {
+                        return GameEntry.Player.faceDamage;
+                    }
+                case FaceDamageType.Other:
+                    {
+                        break;
+                    }
+            }
+            return 0;
+        }
     }
 
 }

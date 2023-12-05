@@ -21,6 +21,10 @@ namespace Survival
         public float FireDamageRatio = 1;
         public int level;
         public int next_level_Exp;
+
+        public FaceDamageType faceDamageType = FaceDamageType.BaseMode;
+
+        public float faceDamage = 5;
         public float HP
         {
             set

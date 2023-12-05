@@ -13,14 +13,13 @@ namespace Survival
 
         public Node LineRoot;
 
-        private Dictionary<int, Node> lines = new Dictionary<int, Node>();
+        private Dictionary<int, Line> lines = new Dictionary<int, Line>();
         private int currentMap = 0;
 
         public EntityManager(Node entityRoot, Node enemyRoot)
         {
             EntityRoot = entityRoot;
             EnemyRoot = enemyRoot;
-            PointsRoot = entityRoot.FindChild("PointsRoot");
             FaceRoot = entityRoot.FindChild("FaceRoot");
             LineRoot = entityRoot.FindChild("LineRoot");
         }
@@ -33,20 +32,13 @@ namespace Survival
             return n;
         }
 
-        public Node CreateItem(string AssetName)
-        {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetItemAsset(AssetName));
-            Node n = entity.Instantiate();
-            EntityRoot.AddChild(n);
-            return n;
-        }
-
-        public void CreatePoint(string AssetName, Vector2 position = default(Vector2))
+        public void CreatePoint(string AssetName, int lineId, Vector2 position)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset(AssetName));
-            Area2D n = (Area2D)entity.Instantiate();
+            Point n = (Point)entity.Instantiate();
             n.Position = position;
-            PointsRoot.AddChild(n);
+            n.lineId = lineId;
+            lines[lineId].AddChild(n);
         }
 
         // public void CreatePoint(string AssetName, Vector2 position = default(Vector2))
@@ -97,10 +89,16 @@ namespace Survival
         public void CreateLine(int lineId)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
-            Node n = entity.Instantiate();
+            Line n = (Line)entity.Instantiate();
+            n.lineId = lineId;
             LineRoot.AddChild(n);
             n.Name = lineId.ToString();
             lines.Add(lineId, n);
+        }
+
+        public Line GetLine(int lineId)
+        {
+            return (Line)lines[lineId];
         }
 
         public void DelLine(int lineId)
@@ -109,20 +107,11 @@ namespace Survival
             lines.Remove(lineId);
         }
 
-        public Node CreateMainSkillBook(int id)
+        public void ClearLinePoints(int lineId)
         {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetItemAsset("MainSkillBook"));
-            MainSkillBook n = (MainSkillBook)entity.Instantiate();
-            n.id = id;
-            EntityRoot.AddChild(n);
-            return n;
-        }
-
-        public void ClearPoints()
-        {
-            foreach (Node point in PointsRoot.GetChildren())
+            for (int i = 2; i < lines[lineId].GetChildren().Count; i++)
             {
-                point.QueueFree();
+                lines[lineId].GetChild(i).QueueFree();
             }
             //line.ClearPoints();
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Survival
@@ -10,14 +11,12 @@ namespace Survival
         int faceWidth = 540;
         int faceHeight = 540;
         int faceCount = 3;
-        //Dictionary<int, bool[][]> faces = new Dictionary<int, bool[][]>();
+
         bool[][][] faces = new bool[3][][];
 
         List<int>[] lineIds = new List<int>[3];
 
-        List<Vector2> closedShapePoints = new List<Vector2>();
-
-        (int x, int y)[] lastPoint = new (int x, int y)[3];
+        Vector2 lastPoint;
 
         public FaceManager()
         {
@@ -45,109 +44,133 @@ namespace Survival
 
         }
         //FaceId 默认：0-玩家平面；1-敌人平面；2-函数平面
-        public void AddNewFace(int faceId)
-        {
-            //faces.Add(faceId, new bool[faceWidth][]);
-        }
-
-        // public int AddNewLine()
-        // {
-        //     int lineId = GenerateLineId();
-        //     GameEntry.Entity.CreateLine(lineId);
-        //     return lineId;
-        // }
 
         public void AddPoint(Vector2 point, int faceId, int lineId)
         {
-            int indexX = (int)point.X + 270;
-            int indexY = (int)point.Y + 270;
-
             // 如果有新的line加入，在list中记录
             if (!lineIds[faceId].Contains(lineId))
             {
                 GameEntry.Entity.CreateLine(lineId);
                 lineIds[faceId].Add(lineId);
-                lastPoint[faceId] = (indexX, indexY);
+                lastPoint = point;
             }
-            if (faces[faceId][indexX][indexY])
+
+            // 距离过近不生成点
+            if (lastPoint.DistanceTo(point) < 2)
             {
-                // 无需重复添加点
-                if (IsClosedShape(indexX, indexY, faceId))
-                {
-                    // TODO: 生成平面
-                    // GD.Print("生成平面");
-                    // 清楚所有点、线
-                    ClearFacePoints(faceId);
-                    ClearFaceLines(faceId);
-                }
                 return;
             }
 
             //添加点
             GameEntry.Entity.AddLinePoint(point, lineId);
+            GameEntry.Entity.CreatePoint("points", lineId, point);
+            lastPoint = point;
+        }
 
-            //GD.Print("addPoint" + "  x:" + indexX + "  y:" + indexY);
-            faces[faceId][indexX][indexY] = true;
 
-            //不连续需要补点,保证线条的连续性
-            if (Mathf.Abs(indexX - lastPoint[faceId].x) + Mathf.Abs(indexY - lastPoint[faceId].y) > 1)
+        public void LinkLines(int lineId1, int lineId2, LinkPoint linkPoint)
+        {
+            Line line1 = GameEntry.Entity.GetLine(lineId1);
+            if (lineId1 == lineId2)
             {
-                if (indexX < lastPoint[faceId].x)
-                {
-                    for (int i = indexX + 1; i <= lastPoint[faceId].x; i++)
-                    {
-                        faces[faceId][i][indexY] = true;
-                    }
-                }
-                else
-                {
-                    for (int i = lastPoint[faceId].x + 1; i <= indexX; i++)
-                    {
-                        faces[faceId][i][indexY] = true;
-                    }
-                }
-
-                if (indexY < lastPoint[faceId].y)
-                {
-                    for (int i = indexY + 1; i < lastPoint[faceId].y; i++)
-                    {
-                        faces[faceId][lastPoint[faceId].x][i] = true;
-                    }
-                }
-                else
-                {
-                    for (int i = lastPoint[faceId].y + 1; i < indexY; i++)
-                    {
-                        faces[faceId][lastPoint[faceId].x][i] = true;
-                    }
-                }
+                //GD.Print("生成平面");
+                GameEntry.Entity.CreateFace("face", GetFacePoints(line1, linkPoint.point1.GetIndex()));
+                ClearFaceLines((int)FaceId.PlayerFace);
+                return;
             }
 
-            lastPoint[faceId] = (indexX, indexY);
-
-            if (IsClosedShape(indexX, indexY, faceId))
+            Line line2 = GameEntry.Entity.GetLine(lineId2);
+            line1.linkPoints.Add(linkPoint);
+            line2.linkPoints.Add(linkPoint);
+            if (line1.linkedLines.Contains(lineId2))
             {
                 // TODO: 生成平面
-                // GD.Print("生成平面");
-                GD.Print(closedShapePoints.Count);
-                GameEntry.Entity.CreateFace("face", closedShapePoints.ToArray());
+                GD.Print("生成平面");
+                //GD.Print(closedShapePoints.Count);
+                GameEntry.Entity.CreateFace("face", GetFacePoints(line1));
                 // 清楚所有点、线
-                ClearFacePoints(faceId);
-                ClearFaceLines(faceId);
+                //ClearFacePoints(faceId);
+                ClearFaceLines((int)FaceId.PlayerFace);
+                return;
             }
+            line1.linkedLines = line1.linkedLines.Union(line2.linkedLines).ToList();
+            line2.linkedLines = line2.linkedLines.Union(line1.linkedLines).ToList();
+            // GD.Print(line1.linkedLines.Count);
         }
 
-        public void DelPoint(Vector2 point, int faceId, int lineId)
+        private Vector2[] GetFacePoints(Line line, int start)
         {
-            int indexX = (int)point.X + 270;
-            int indexY = (int)point.Y + 270;
-            faces[faceId][indexX][indexY] = false;
+            Vector2[] points = new Vector2[line.GetChildCount() - start - 3];
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i] = line.GetChild<Node2D>(i + start).Position;
+            }
+            return points;
         }
 
-        public bool IsFormFace(int faceId)
+        private Vector2[] GetFacePoints(Line line)
         {
-            return false;
+            List<Vector2> points = new List<Vector2>();
+            Line startLine = line;
+            LinkPoint lastLinkPoint = null;
+            do
+            {
+                List<LinkPoint> linkPoints = new List<LinkPoint>();
+                //除了第一条线，其余的线的起始点都是上一条线的最后一个点
+                if (lastLinkPoint != null)
+                {
+                    linkPoints.Add(lastLinkPoint);
+                }
+                //找到线段的两个端点
+                for (int i = 0; i < line.linkPoints.Count; i++)
+                {
+                    if (line.linkPoints[i].point1.lineId != line.lineId)
+                    {
+                        if (line.linkedLines.Contains(line.linkPoints[i].point1.lineId))
+                        {
+                            if (line.linkPoints[i] != lastLinkPoint)
+                                linkPoints.Add(line.linkPoints[i]);
+                        }
+                        continue;
+                    }
+                    if (line.linkedLines.Contains(line.linkPoints[i].point2.lineId))
+                    {
+                        if (line.linkPoints[i] != lastLinkPoint)
+                            linkPoints.Add(line.linkPoints[i]);
+                    }
+                }
+
+                //通过端点，找到线段上所有的点
+                int start = linkPoints[0].point1.lineId == line.lineId ? linkPoints[0].point1.GetIndex() : linkPoints[0].point2.GetIndex();
+                int end = linkPoints[1].point1.lineId == line.lineId ? linkPoints[1].point1.GetIndex() : linkPoints[1].point2.GetIndex();
+                if (start < end)
+                    for (int i = start; i < end; i++)
+                    {
+                        points.Add(line.GetChild<Node2D>(i).Position);
+                    }
+                else
+                    for (int i = start; i > end; i--)
+                    {
+                        points.Add(line.GetChild<Node2D>(i).Position);
+                    }
+
+                lastLinkPoint = linkPoints[1];
+                //根据连接点找到下一条线段
+                line = linkPoints[1].point1.lineId == line.lineId ? GameEntry.Entity.GetLine(linkPoints[1].point2.lineId) : GameEntry.Entity.GetLine(linkPoints[1].point1.lineId);
+            } while (line != startLine);
+
+            return points.ToArray();
         }
+
+        // private Vector2[] GetFacePoints(Line line)
+        // {
+        //     line.linkPoints
+        // }
+
+        // private Vector2[] GetFacePoint(Line line1, Line line2)
+        // {
+
+        // }
 
         private bool IsClosedShape(int x, int y, int faceId)
         {
@@ -156,7 +179,6 @@ namespace Survival
             {
                 map[i] = (bool[])faces[faceId][i].Clone();
             }
-            closedShapePoints.Clear();
 
             return DFS(map, (x, y), faceWidth, faceHeight);
         }
@@ -188,12 +210,6 @@ namespace Survival
                 }
 
                 map[row][col] = false; // 标记已访问
-                // if (popCount >= 4)
-                // {
-                //     closedShapePoints.Clear();
-                // }
-                // popCount = 0;
-                closedShapePoints.Add(new Vector2(row - 270, col - 270)); // 将点添加到列表
 
                 // 将相邻的点入栈
                 stack.Push((row + 1, col));
@@ -205,17 +221,6 @@ namespace Survival
             }
 
             return false;
-        }
-
-        public void ClearFacePoints(int faceId)
-        {
-            for (int i = 0; i < faceWidth; i++)
-            {
-                for (int j = 0; j < faceHeight; j++)
-                {
-                    faces[faceId][i][j] = false;
-                }
-            }
         }
 
         public void ClearFaceLines(int faceId)
