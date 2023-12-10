@@ -25,6 +25,10 @@ namespace Survival
         public FaceDamageType faceDamageType = FaceDamageType.BaseMode;
 
         public float faceDamage = 5;
+
+        public FaceDamageType lineDamageType = FaceDamageType.BaseMode;
+
+        public float lineDamage = 5;
         public float HP
         {
             set
@@ -75,14 +79,8 @@ namespace Survival
         {
             string playerPath = "Players/";
             playerEntity = (PlayerController)GameEntry.Entity.CreateEntity(playerPath + "Player");
-            // UpdatePlayerData();
-            // UpdatePlayerDataToPlayer();
-            //读取exp表
-            // m_HP = MaxHP;
-            // m_Exp = 0;
-            // level = 0;
-            // next_level_Exp = 10;
         }
+
 
         // //使玩家无敌1s
         // public void DisPlayerCollsionOneSecond()

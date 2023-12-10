@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bid0ql3oi1un2"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/RushToPlayer.cs" id="1_r6svk"]
+
+[node name="RushToPlayer" type="Node"]
+script = ExtResource("1_r6svk")

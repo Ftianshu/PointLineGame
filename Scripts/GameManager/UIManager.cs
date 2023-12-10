@@ -9,6 +9,7 @@ namespace Survival
         //private UIItem
         private Node UIRoot = null;
 
+
         private Dictionary<string, Control> uiForms;
         public UIManager(Node uiRoot)
         {
@@ -63,5 +64,7 @@ namespace Survival
         {
             node.Hide();
         }
+
+
     }
 }

@@ -38,10 +38,13 @@ namespace Survival
             //生成玩家
             GameEntry.Player.CreatePlayer();
 
+            //创建坐标系
+            GameEntry.Entity.CreateCoordinate();
+
             //打开UI
             GameEntry.UI.OpenUIForm(UIFormId.GamingUI);
 
-            GameEntry.Entity.CreateEnemy("Ordinary");
+            GameEntry.Entity.CreateEnemy("RushEnemy0");
         }
 
         public void Update(double delta)

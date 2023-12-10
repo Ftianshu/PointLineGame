@@ -4,7 +4,7 @@ using System;
 namespace Survival
 {
 
-    public partial class MoveToPlayer : Node
+    public partial class RotateToPlayer : Node
     {
         private Enemy me;
 
@@ -19,7 +19,7 @@ namespace Survival
 
             Vector2 target = GameEntry.Player.playerEntity.Position;
             Vector2 direct = target - me.Position;
-            me.Position += direct.Normalized() * me.Speed * (float)delta;
+            me.Rotation = MathF.Atan2(direct.X, -direct.Y);
         }
     }
 }

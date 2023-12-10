@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp6ivitfrr7y"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Coordinate.cs" id="1_binxv"]
+
+[node name="Coordinate" type="Node2D"]
+script = ExtResource("1_binxv")
+
+[node name="X" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 540, 0)
+width = 5.0
+
+[node name="Polygon2D" type="Polygon2D" parent="X"]
+position = Vector2(526, 0)
+polygon = PackedVector2Array(2, 3, 23, 3, 23, -20)
+
+[node name="Y" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -540)
+width = 5.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Y"]
+position = Vector2(-1, -540)
+polygon = PackedVector2Array(-1, 0, 21, 0, 0, 19)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 5.0
+offset_top = -534.0
+offset_right = 69.0
+offset_bottom = -508.0
+text = "伤害"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 512.0
+offset_top = -27.0
+offset_right = 576.0
+offset_bottom = -1.0
+text = "面积"
+metadata/_edit_use_anchors_ = true

@@ -10,6 +10,7 @@ namespace Survival
         public Node EnemyRoot;
         private Node PointsRoot;
         private Node FaceRoot;
+        private Coordinate coordinate;
 
         public Node LineRoot;
 
@@ -114,6 +115,26 @@ namespace Survival
                 lines[lineId].GetChild(i).QueueFree();
             }
             //line.ClearPoints();
+        }
+
+        public void CreateCoordinate()
+        {
+            var entity = GD.Load<PackedScene>(AssetUtility.GetEntityAsset("Players/Coordinate"));
+            coordinate = entity.Instantiate() as Coordinate;
+            EntityRoot.AddChild(coordinate);
+            coordinate.Scale = new Vector2(0.3f, 0.3f);
+            coordinate.Position = new Vector2(275, -100);
+
+            DrawCoordinateLine(GameEntry.Player.faceDamage, 0);
+        }
+        public void DrawCoordinateLine(float start, float slope)
+        {
+            coordinate.DrawLine(start, slope);
+        }
+
+        public void DrawCoordinatePoint(int x, int y)
+        {
+            coordinate.DrawPoint(x, y);
         }
 
         public void AddLinePoint(Vector2 position, int lineId)

@@ -68,6 +68,9 @@ namespace Survival
 
         private int GetSquare()
         {
+            if (points.Length < 2)
+                return 0;
+
             float square = 0;
             for (int i = 0; i < points.Length - 1; i++)
             {
