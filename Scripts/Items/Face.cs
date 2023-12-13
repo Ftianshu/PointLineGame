@@ -13,6 +13,9 @@ namespace Survival
 
         private double Lifetime = 0.5;
 
+        // 代表阵营
+        public int faceId;
+
         private double time = 0;
 
         public override void _Ready()

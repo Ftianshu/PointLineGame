@@ -3,7 +3,7 @@ using System;
 
 namespace Survival
 {
-    public partial class Point : Area2D
+    public abstract partial class Point : Area2D
     {
         public float Lifetime = 3f;
 
@@ -25,26 +25,17 @@ namespace Survival
             // Connect("playerEnter", new Callable(GameEntry.Entity.GetLine(lineId), "OnPlayerEnter"));
             BodyEntered += OnPlayerEnter;
             BodyExited += OnPlayerExit;
+            AreaEntered += OnEnemyEnter;
+            AreaExited += OnEnemyExit;
         }
 
-        public void OnPlayerEnter(Node2D body)
-        {
-            PlayerController player = body as PlayerController;
-            // GD.Print(body.Name + GetIndex());
-            // GameEntry.Entity.CreateFace("face", GetIndex());
-            if (!player.IsLinking && !player.isRushing)
-            {
-                player.IsLinking = true;
-                Line line = GameEntry.Entity.GetLine(player.currentLine);
-                GameEntry.Face.LinkLines(player.currentLine, lineId, new LinkPoint(this, line.GetChild<Point>(line.GetChildCount() - 4)));
-                // EmitSignal("playerEnter");
-            }
-        }
+        public abstract void OnEnemyEnter(Area2D area);
 
-        public void OnPlayerExit(Node2D body)
-        {
-            (body as PlayerController).IsLinking = false;
-        }
+        public abstract void OnEnemyExit(Area2D area);
+
+        public abstract void OnPlayerEnter(Node2D body);
+
+        public abstract void OnPlayerExit(Node2D body);
 
 
         public override void _Process(double delta)

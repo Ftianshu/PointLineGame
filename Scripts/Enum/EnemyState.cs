@@ -11,6 +11,10 @@ namespace Survival
 
         Accumulate = 2,
 
-        Exhausted = 3
+        Exhausted = 3,
+
+        MoveToTarget = 4,
+
+
     }
 }

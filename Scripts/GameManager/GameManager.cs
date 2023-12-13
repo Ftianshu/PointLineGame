@@ -44,7 +44,17 @@ namespace Survival
             //打开UI
             GameEntry.UI.OpenUIForm(UIFormId.GamingUI);
 
-            GameEntry.Entity.CreateEnemy("RushEnemy0");
+            TargetEnemy targetEnemy1 = GameEntry.Entity.CreateEnemy("TargetEnemy", new Vector2(-10, 0)) as TargetEnemy;
+            targetEnemy1.SetTarget(new Vector2(100, 0));
+
+            TargetEnemy targetEnemy2 = GameEntry.Entity.CreateEnemy("TargetEnemy", new Vector2(0, -100)) as TargetEnemy;
+            targetEnemy2.SetTarget(new Vector2(0, 100));
+
+            TargetEnemy targetEnemy3 = GameEntry.Entity.CreateEnemy("TargetEnemy", new Vector2(90, 10)) as TargetEnemy;
+            targetEnemy3.SetTarget(new Vector2(90, -100));
+
+            TargetEnemy targetEnemy4 = GameEntry.Entity.CreateEnemy("TargetEnemy", new Vector2(100, -90)) as TargetEnemy;
+            targetEnemy4.SetTarget(new Vector2(-10, -90));
         }
 
         public void Update(double delta)
@@ -64,13 +74,11 @@ namespace Survival
         public void Pause()
         {
             gamePause = true;
-            GameEntry.Skill.Pause();
         }
 
         public void ReCover()
         {
             gamePause = false;
-            GameEntry.Skill.ReCover();
         }
 
     }

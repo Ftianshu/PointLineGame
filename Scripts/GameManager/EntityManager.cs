@@ -42,22 +42,13 @@ namespace Survival
             lines[lineId].AddChild(n);
         }
 
-        // public void CreatePoint(string AssetName, Vector2 position = default(Vector2))
-        // {
-        //     var collision = new CollisionShape2D();
-        //     var circle = new CircleShape2D();
-        //     collision.Position = position;
-        //     circle.Radius = 1.5f;
-        //     collision.Shape = circle;
-        //     //collision.SetDeferred("shape", circle);
-        //     Points.AddChild(collision);
-        // }
-
-        public Node CreateEnemy(string AssetName)
+        public Node2D CreateEnemy(string AssetName, Vector2 position = default(Vector2))
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEnemyAsset(AssetName));
-            Node n = entity.Instantiate();
+            Node2D n = entity.Instantiate() as Node2D;
             EnemyRoot.AddChild(n);
+
+            n.Position = position;
             return n;
         }
 
@@ -87,11 +78,12 @@ namespace Survival
             EntityRoot.AddChild(n);
         }
 
-        public void CreateLine(int lineId)
+        public void CreateLine(int lineId, Color color)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
             Line n = (Line)entity.Instantiate();
             n.lineId = lineId;
+            n.GetNode<Line2D>("Line2D").DefaultColor = color;
             LineRoot.AddChild(n);
             n.Name = lineId.ToString();
             lines.Add(lineId, n);
@@ -142,10 +134,11 @@ namespace Survival
             (lines[lineId] as Line).AddPoint(position);
         }
 
-        public void CreateFace(string AssetName, Vector2[] points)
+        public void CreateFace(string AssetName, Vector2[] points, FaceId faceId = FaceId.PlayerFace)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetFaceAsset(AssetName));
             Face n = (Face)entity.Instantiate();
+            n.faceId = (int)faceId;
             n.points = points;
             FaceRoot.AddChild(n);
         }

@@ -15,6 +15,8 @@ namespace Survival
 
         private double ExhaustedTime = 1;
 
+        public int lineId;
+
         private bool IsDead()
         {
             if (HP <= 0)
@@ -24,7 +26,7 @@ namespace Survival
             return false;
         }
 
-        private void OnDead()
+        public override void OnDead()
         {
             QueueFree();
             GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);
@@ -40,6 +42,7 @@ namespace Survival
             var behavior2 = new RotateToPlayer();
             behavior2.Name = "RotateToPlayer";
             AddChild(behavior2);
+            lineId = GameEntry.Face.GenerateLineId();
             Position = new Vector2(-100, 0);
         }
 
@@ -50,7 +53,7 @@ namespace Survival
                 case EnemyState.MoveToPlayer:
                     {
                         float distance = GameEntry.Player.playerEntity.Position.DistanceTo(Position);
-                        if (distance < 50)
+                        if (distance < 100)
                         {
                             GD.Print("Rush");
                             State = EnemyState.Accumulate;
@@ -66,6 +69,7 @@ namespace Survival
                         if (!HasNode("RushToPlayer"))
                         {
                             State = EnemyState.Exhausted;
+                            lineId = GameEntry.Face.GenerateLineId();
                         }
                         break;
                     }
@@ -86,7 +90,7 @@ namespace Survival
                     }
                 case EnemyState.Exhausted:
                     {
-                        //冲刺完后，一段时间不会移动，
+                        //冲刺完后，进入力竭状态
                         timer += delta;
                         if (timer > ExhaustedTime)
                         {

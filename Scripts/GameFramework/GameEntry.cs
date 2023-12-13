@@ -44,12 +44,6 @@ namespace Survival
             private set;
         }
 
-        public static SkillManager Skill
-        {
-            get;
-            private set;
-        }
-
         public static FaceManager Face
         {
             get;
@@ -84,7 +78,6 @@ namespace Survival
             Map = new MapManager(GetNode<Node>("MapRoot"));
             Entity = new EntityManager(GetNode<Node>("EntityRoot"), GetNode<Node>("EntityRoot/EnemyRoot"));
             Player = new PlayerManager();
-            Skill = new SkillManager(GetNode<Node>("SkillTimerRoot"));
             Face = new FaceManager();
         }
 

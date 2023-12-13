@@ -6,15 +6,6 @@ namespace Survival
 
     public class PlayerManager
     {
-        public int playerIndex = 0;
-        // public PlayerData basicData;
-        // public PlayerData playerData;
-        // public PlayerData weaponData;
-
-        //玩家数据：0-力量；1-体质；2-敏捷；3-精神；4-魅力；5-10 金木水火土灵根。
-        public int[] basicData = new int[10];
-        public int[] playerData = new int[10];
-        public int[] weaponData = new int[10];
         public int money = 0;
         private float m_HP;
         private float m_Exp;
@@ -29,6 +20,8 @@ namespace Survival
         public FaceDamageType lineDamageType = FaceDamageType.BaseMode;
 
         public float lineDamage = 5;
+        public float pointLife = 3f;
+
         public float HP
         {
             set
@@ -82,12 +75,6 @@ namespace Survival
         }
 
 
-        // //使玩家无敌1s
-        // public void DisPlayerCollsionOneSecond()
-        // {
-        //     playerEntity.DisPlayerCollsionOneSecond();
-        // }
-
         private void PlayerLevelup()
         {
             level++;
@@ -97,10 +84,6 @@ namespace Survival
             GameEntry.UI.OpenUIForm(UIFormId.LevelUpForm);
         }
 
-        public void SetPlayerData(int[] data)
-        {
-            basicData = data;
-        }
 
         public void InitBag()
         {
@@ -113,110 +96,6 @@ namespace Survival
             money += gain;
 
             playerEntity.EmitSignal("playerMoneyChanged");
-        }
-
-        public void GainItem(int itemId)
-        {
-            var c = GD.Load<PackedScene>(AssetUtility.GetUIItemAsset("ItemUI"));
-            ItemUI item = c.Instantiate<ItemUI>();
-            item.id = itemId;
-            bag.AddItem(item);
-        }
-
-        public void WearWeapon(int index, ItemUI newItem)
-        {
-            weapons[index] = GameEntry.DataTable.GetDataTable<DRWeapon>().GetDataRow(newItem.id);
-            UpdateWeaponData();
-            UpdatePlayerData();
-        }
-
-        public void TakeOffWeapon(int index)
-        {
-            weapons[index] = null;
-            UpdateWeaponData();
-            UpdatePlayerData();
-        }
-
-        private void UpdatePlayerData()
-        {
-            for (int i = 0; i < playerData.Length; i++)
-            {
-                playerData[i] = weaponData[i] + basicData[i];
-            }
-        }
-
-        private void UpdateWeaponData()
-        {
-            int[] data = new int[5];
-            foreach (DRWeapon weapon in weapons)
-            {
-                if (weapon == null)
-                    continue;
-                data[0] += weapon.Strength;
-                data[1] += weapon.Physique;
-                data[2] += weapon.Agile;
-                data[3] += weapon.Soul;
-                data[4] += weapon.Charm;
-            }
-            for (int i = 0; i < data.Length; i++)
-            {
-                weaponData[i] = data[i];
-            }
-        }
-
-        public void UpdateWeaponSkill()
-        {
-            int[] weaponSkills = new int[weapons.Length];
-            for (int i = 0; i < weapons.Length; i++)
-            {
-                if (weapons[i] == null)
-                    continue;
-                weaponSkills[i] = weapons[i].Skill;
-            }
-            GameEntry.Skill.UpdateWeaponSkills(weaponSkills);
-        }
-
-        public void GainItem(ItemUI item)
-        {
-            bag.AddItem(item);
-        }
-
-        public void GainWeapon(int weaponId, int type)
-        {
-            // var c = GD.Load<PackedScene>(AssetUtility.GetUIItemAsset("ItemUI"));
-            // ItemUI item = c.Instantiate<ItemUI>();
-            ItemUI item = new WeaponUI();
-            item.id = weaponId;
-            item.type = type;
-            bag.AddItem(item);
-        }
-
-        public void GainSkillBook(int skillId)
-        {
-            // var c = GD.Load<PackedScene>(AssetUtility.GetUIItemAsset("ItemUI"));
-            // ItemUI item = c.Instantiate<ItemUI>();
-            ItemUI item = new SkillBookUI();
-            item.id = skillId;
-            bag.AddItem(item);
-        }
-
-        public void GainMainSkillBook(int skillId)
-        {
-            // var c = GD.Load<PackedScene>(AssetUtility.GetUIItemAsset("ItemUI"));
-            // ItemUI item = c.Instantiate<ItemUI>();
-            ItemUI item = new MainSkillBookUI();
-            item.id = skillId;
-            bag.AddItem(item);
-        }
-
-
-        //用playerData中的数据转化成用户实际的数据
-        public void UpdatePlayerDataToPlayer()
-        {
-            //体质->最大生命值 转化 1：3
-            MaxHP = playerData[1] * 3 + 10;
-            //playerEntity.Speed = playerData[2] * 50;
-            playerEntity.EmitSignal("playerHPChanged");
         }
     }
 }

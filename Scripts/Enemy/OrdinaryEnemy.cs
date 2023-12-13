@@ -37,7 +37,7 @@ namespace Survival
             return false;
         }
 
-        private void OnDead()
+        public override void OnDead()
         {
             QueueFree();
             GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);

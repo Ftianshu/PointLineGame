@@ -12,11 +12,9 @@ namespace Survival
         int faceHeight = 540;
         int faceCount = 3;
 
-        bool[][][] faces = new bool[3][][];
-
         List<int>[] lineIds = new List<int>[3];
 
-        Vector2 lastPoint;
+        Vector2[] lastPoint = new Vector2[3];
 
         public FaceManager()
         {
@@ -29,34 +27,25 @@ namespace Survival
             //         faces[i][j] = new bool[faceHeight];
             //     }
             // }
-            faces[0] = new bool[faceWidth][];
-            faces[1] = new bool[faceWidth][];
-            faces[2] = new bool[faceWidth][];
             lineIds[0] = new List<int>();
             lineIds[1] = new List<int>();
             lineIds[2] = new List<int>();
-            for (int i = 0; i < faceWidth; i++)
-            {
-                faces[0][i] = new bool[faceHeight];
-                faces[1][i] = new bool[faceHeight];
-                faces[2][i] = new bool[faceHeight];
-            }
 
         }
-        //FaceId 默认：0-玩家平面；1-敌人平面；2-函数平面
 
+        //FaceId 默认：0-玩家平面；1-敌人平面；2-函数平面
         public void AddPoint(Vector2 point, int faceId, int lineId)
         {
             // 如果有新的line加入，在list中记录
             if (!lineIds[faceId].Contains(lineId))
             {
-                GameEntry.Entity.CreateLine(lineId);
+                GameEntry.Entity.CreateLine(lineId, new Color(255, 255, 255));
                 lineIds[faceId].Add(lineId);
-                lastPoint = point;
+                lastPoint[faceId] = point;
             }
 
             // 距离过近不生成点
-            if (lastPoint.DistanceTo(point) < 2)
+            if (lastPoint[faceId].DistanceTo(point) < 2)
             {
                 return;
             }
@@ -64,7 +53,31 @@ namespace Survival
             //添加点
             GameEntry.Entity.AddLinePoint(point, lineId);
             GameEntry.Entity.CreatePoint("points", lineId, point);
-            lastPoint = point;
+
+            lastPoint[faceId] = point;
+        }
+
+        public void AddEnemyPoint(Vector2 point, int lineId, int faceId = (int)FaceId.EnemyFace)
+        {
+            // 如果有新的line加入，在list中记录
+            if (!lineIds[faceId].Contains(lineId))
+            {
+                GameEntry.Entity.CreateLine(lineId, new Color(255, 0, 0));
+                lineIds[faceId].Add(lineId);
+                lastPoint[faceId] = point;
+            }
+
+            // 距离过近不生成点
+            if (lastPoint[faceId].DistanceTo(point) < 2)
+            {
+                return;
+            }
+
+            //添加点
+            GameEntry.Entity.AddLinePoint(point, lineId);
+            GameEntry.Entity.CreatePoint("EnemyPoint", lineId, point);
+
+            lastPoint[faceId] = point;
         }
 
 
@@ -73,12 +86,11 @@ namespace Survival
             Line line1 = GameEntry.Entity.GetLine(lineId1);
             if (lineId1 == lineId2)
             {
-                //GD.Print("生成平面");
                 GameEntry.Entity.CreateFace("face", GetFacePoints(line1, linkPoint.point1.GetIndex()));
                 ClearFaceLines((int)FaceId.PlayerFace);
                 return;
             }
-
+            // GD.Print("line1: " + lineId1 + "--" + "line2:  " + lineId2);
             Line line2 = GameEntry.Entity.GetLine(lineId2);
             line1.linkPoints.Add(linkPoint);
             line2.linkPoints.Add(linkPoint);
@@ -86,16 +98,17 @@ namespace Survival
             {
                 // TODO: 生成平面
                 GD.Print("生成平面");
-                //GD.Print(closedShapePoints.Count);
                 GameEntry.Entity.CreateFace("face", GetFacePoints(line1));
                 // 清楚所有点、线
-                //ClearFacePoints(faceId);
                 ClearFaceLines((int)FaceId.PlayerFace);
                 return;
             }
-            line1.linkedLines = line1.linkedLines.Union(line2.linkedLines).ToList();
-            line2.linkedLines = line2.linkedLines.Union(line1.linkedLines).ToList();
-            // GD.Print(line1.linkedLines.Count);
+            //更新所有连接的line中的linkedLines
+            List<int> newLink = line1.linkedLines.Union(line2.linkedLines).ToList();
+            for (int i = 0; i < newLink.Count; i++)
+            {
+                GameEntry.Entity.GetLine(newLink[i]).linkedLines = newLink;
+            }
         }
 
         private Vector2[] GetFacePoints(Line line, int start)
@@ -162,66 +175,6 @@ namespace Survival
             return points.ToArray();
         }
 
-        // private Vector2[] GetFacePoints(Line line)
-        // {
-        //     line.linkPoints
-        // }
-
-        // private Vector2[] GetFacePoint(Line line1, Line line2)
-        // {
-
-        // }
-
-        private bool IsClosedShape(int x, int y, int faceId)
-        {
-            bool[][] map = new bool[faceWidth][];
-            for (int i = 0; i < map.Length; i++)
-            {
-                map[i] = (bool[])faces[faceId][i].Clone();
-            }
-
-            return DFS(map, (x, y), faceWidth, faceHeight);
-        }
-
-        private bool DFS(bool[][] map, (int row, int col) start, int rows, int cols)
-        {
-
-            // 使用栈来模拟递归调用
-
-            Stack<(int row, int col)> stack = new Stack<(int, int)>();
-            Dictionary<(int row, int col), int> pointsCount = new Dictionary<(int row, int col), int>();
-            stack.Push(start);
-            int popCount = 0;
-
-            while (stack.Count > 0)
-            {
-                var current = stack.Pop();
-                int row = current.row;
-                int col = current.col;
-                if (pointsCount.ContainsKey(current) && pointsCount[current]++ >= 1)
-                {
-                    return true;
-                }
-
-                if (row < 0 || row >= rows || col < 0 || col >= cols || !map[row][col])
-                {
-                    popCount++;
-                    continue;
-                }
-
-                map[row][col] = false; // 标记已访问
-
-                // 将相邻的点入栈
-                stack.Push((row + 1, col));
-                stack.Push((row - 1, col));
-                stack.Push((row, col + 1));
-                stack.Push((row, col - 1));
-
-                pointsCount.Add(current, 0);
-            }
-
-            return false;
-        }
 
         public void ClearFaceLines(int faceId)
         {

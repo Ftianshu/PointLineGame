@@ -11,6 +11,10 @@ namespace Survival
         [Export]
         public int RushSpeed;
 
+        public bool IsLinking;
+
+        public bool IsBeAttacked;
+
         public int id = 60000;
 
         public int lastDamageForm = -1;
@@ -34,7 +38,6 @@ namespace Survival
             Attack = drEnemy.Attack;
             Exp = drEnemy.Exp;
             HP = MaxHP;
-            Position = new Vector2(-100, 0);
             OnLoad();
         }
 
@@ -84,11 +87,6 @@ namespace Survival
             return false;
         }
 
-        private void OnDead()
-        {
-            QueueFree();
-            GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);
-            GameEntry.Entity.CreateEnemy("RushEnemy0");
-        }
+        public abstract void OnDead();
     }
 }
