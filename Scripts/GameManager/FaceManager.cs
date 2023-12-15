@@ -39,7 +39,7 @@ namespace Survival
             // 如果有新的line加入，在list中记录
             if (!lineIds[faceId].Contains(lineId))
             {
-                GameEntry.Entity.CreateLine(lineId, new Color(255, 255, 255));
+                GameEntry.Entity.CreateLine(lineId, new Color(255, 255, 255), faceId);
                 lineIds[faceId].Add(lineId);
                 lastPoint[faceId] = point;
             }
@@ -62,7 +62,7 @@ namespace Survival
             // 如果有新的line加入，在list中记录
             if (!lineIds[faceId].Contains(lineId))
             {
-                GameEntry.Entity.CreateLine(lineId, new Color(255, 0, 0));
+                GameEntry.Entity.CreateLine(lineId, new Color(255, 0, 0), faceId);
                 lineIds[faceId].Add(lineId);
                 lastPoint[faceId] = point;
             }
@@ -87,7 +87,7 @@ namespace Survival
             if (lineId1 == lineId2)
             {
                 GameEntry.Entity.CreateFace("face", GetFacePoints(line1, linkPoint.point1.GetIndex()));
-                ClearFaceLines((int)FaceId.PlayerFace);
+                ClearFaceLines(line1.faceId);
                 return;
             }
             // GD.Print("line1: " + lineId1 + "--" + "line2:  " + lineId2);
@@ -100,7 +100,7 @@ namespace Survival
                 GD.Print("生成平面");
                 GameEntry.Entity.CreateFace("face", GetFacePoints(line1));
                 // 清楚所有点、线
-                ClearFaceLines((int)FaceId.PlayerFace);
+                ClearFaceLines(line1.faceId);
                 return;
             }
             //更新所有连接的line中的linkedLines

@@ -78,11 +78,12 @@ namespace Survival
             EntityRoot.AddChild(n);
         }
 
-        public void CreateLine(int lineId, Color color)
+        public void CreateLine(int lineId, Color color, int faceId)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
             Line n = (Line)entity.Instantiate();
             n.lineId = lineId;
+            n.faceId = (int)faceId;
             n.GetNode<Line2D>("Line2D").DefaultColor = color;
             LineRoot.AddChild(n);
             n.Name = lineId.ToString();

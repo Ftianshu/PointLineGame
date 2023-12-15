@@ -11,6 +11,12 @@ namespace Survival
         private float disabledTime = 0.5f;
 
 
+        public override void _Ready()
+        {
+            base._Ready();
+            Lifetime = GameEntry.Enemy.pointLife;
+        }
+
         public override void OnEnemyEnter(Area2D area)
         {
             if (area.GetType().ToString() == "Survival.TargetEnemy")
@@ -33,7 +39,8 @@ namespace Survival
 
         public override void OnPlayerEnter(Node2D body)
         {
-            //造成伤害
+            // 造成伤害
+            // GameEntry.Player.HP -= GameEntry.Enemy.lineDamage;
         }
 
         public override void OnPlayerExit(Node2D body)

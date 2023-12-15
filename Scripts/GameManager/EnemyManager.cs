@@ -8,7 +8,7 @@ namespace Survival
     {
         public int currentBo = 0;
         public float lineDamage = 5;
-        public float pointLife = 3f;
+        public float pointLife = 8f;
 
         public EnemyManager()
         {

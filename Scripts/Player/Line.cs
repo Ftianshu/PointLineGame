@@ -8,6 +8,7 @@ namespace Survival
     {
         private Line2D line;
         public int lineId;
+        public int faceId;
 
         public List<int> linkedLines = new List<int>();
         public List<LinkPoint> linkPoints = new List<LinkPoint>();

@@ -9,7 +9,6 @@ namespace Survival
         public int money = 0;
         private float m_HP;
         private float m_Exp;
-        public float FireDamageRatio = 1;
         public int level;
         public int next_level_Exp;
 
@@ -59,10 +58,6 @@ namespace Survival
         private int[] levelExp = new int[20] { 10, 20, 40, 80, 150, 230, 300, 400, 600, 1000, 1500, 2500, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000 };
         public float MaxHP;
         public PlayerController playerEntity;
-
-        public BagForm bag;
-
-        private DRWeapon[] weapons = new DRWeapon[3];
         public PlayerManager()
         {
 
@@ -84,12 +79,6 @@ namespace Survival
             GameEntry.UI.OpenUIForm(UIFormId.LevelUpForm);
         }
 
-
-        public void InitBag()
-        {
-            bag = (BagForm)GameEntry.UI.OpenUIForm(UIFormId.BagForm);
-            bag.Hide();
-        }
 
         public void GainMoney(int gain)
         {
