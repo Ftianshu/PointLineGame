@@ -7,7 +7,7 @@ using Survival;
 [Tool]
 public partial class excel_dock : ScrollContainer
 {
-    string[] DataTableNames = { "Enemy" };
+    string[] DataTableNames = { "Enemy", "UIForm" };
     public override void _Ready()
     {
 

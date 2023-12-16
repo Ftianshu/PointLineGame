@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 // 此文件由工具自动生成，请勿直接修改。
-// 生成时间：2023-09-27 20:33:33.797
+// 生成时间：2023-12-16 09:33:06.454
 //------------------------------------------------------------
 
 using System;
@@ -18,14 +18,14 @@ using Godot;
 namespace Survival
 {
     /// <summary>
-    /// 地图表。
+    /// 敌人生成表。
     /// </summary>
-    public class DRMap : DataRowBase
+    public class DREnemyGenerator : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取地图编号。
+        /// 获取生成编号。
         /// </summary>
         public override int Id
         {
@@ -36,45 +36,81 @@ namespace Survival
         }
 
         /// <summary>
-        /// 获取地图名称。
+        /// 获取波次。
         /// </summary>
-        public string Name
+        public int WaveCount
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取地图描述。
+        /// 获取资源名称。
         /// </summary>
-        public string Desc
+        public string AssetName
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取敌人编号。
+        /// 获取生成模式。
         /// </summary>
-        public string Enemy
+        public string GenerateType
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取敌人刷新概率（%）。
+        /// 获取生成位置。
         /// </summary>
-        public string EnemyProb
+        public Vector2 Position
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取地图Boss编号。
+        /// 获取目标位置。
         /// </summary>
-        public string Boss
+        public Vector2 Target
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取经验。
+        /// </summary>
+        public float Exp
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取血量。
+        /// </summary>
+        public float Hp
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取攻击。
+        /// </summary>
+        public float Attack
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 获取生成下一个敌人的间隔。
+        /// </summary>
+        public float NextEnemyTime
         {
             get;
             private set;
@@ -91,11 +127,15 @@ namespace Survival
             int index = 0;
             index++;
             m_Id = int.Parse(columnStrings[index++]);
-            Name = columnStrings[index++];
-            Desc = columnStrings[index++];
-            Enemy = columnStrings[index++];
-            EnemyProb = columnStrings[index++];
-            Boss = columnStrings[index++];
+            WaveCount = int.Parse(columnStrings[index++]);
+            AssetName = columnStrings[index++];
+            GenerateType = columnStrings[index++];
+            Position = DataTableExtension.ParseVector2(columnStrings[index++]);
+            Target = DataTableExtension.ParseVector2(columnStrings[index++]);
+            Exp = float.Parse(columnStrings[index++]);
+            Hp = float.Parse(columnStrings[index++]);
+            Attack = float.Parse(columnStrings[index++]);
+            NextEnemyTime = float.Parse(columnStrings[index++]);
 
             GeneratePropertyArray();
             return true;
@@ -108,11 +148,15 @@ namespace Survival
                 using (BinaryReader binaryReader = new BinaryReader(memoryStream, Encoding.UTF8))
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
-                    Name = binaryReader.ReadString();
-                    Desc = binaryReader.ReadString();
-                    Enemy = binaryReader.ReadString();
-                    EnemyProb = binaryReader.ReadString();
-                    Boss = binaryReader.ReadString();
+                    WaveCount = binaryReader.Read7BitEncodedInt32();
+                    AssetName = binaryReader.ReadString();
+                    GenerateType = binaryReader.ReadString();
+                    Position = binaryReader.ReadVector2();
+                    Target = binaryReader.ReadVector2();
+                    Exp = binaryReader.ReadSingle();
+                    Hp = binaryReader.ReadSingle();
+                    Attack = binaryReader.ReadSingle();
+                    NextEnemyTime = binaryReader.ReadSingle();
                 }
             }
 

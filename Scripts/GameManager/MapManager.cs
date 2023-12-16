@@ -25,15 +25,15 @@ namespace Survival
 
         public void LoadMap(int mapId)
         {
-            currentMap = mapId;
-            var map = GD.Load<PackedScene>(AssetUtility.GetMapAsset("Map" + mapId.ToString()));
-            MapRoot.AddChild(map.Instantiate());
-            //加载地图敌人信息
-            DRMap drMap = GameEntry.DataTable.GetDataTable<DRMap>().GetDataRow(mapId);
-            string[] enemyStr = drMap.Enemy.Split("/");
-            string[] enemyProbStr = drMap.EnemyProb.Split("/");
-            enemyProbs = IntArrayToStringArray(enemyProbStr);
-            enemyIds = IntArrayToStringArray(enemyStr);
+            // currentMap = mapId;
+            // var map = GD.Load<PackedScene>(AssetUtility.GetMapAsset("Map" + mapId.ToString()));
+            // MapRoot.AddChild(map.Instantiate());
+            // //加载地图敌人信息
+            // DRMap drMap = GameEntry.DataTable.GetDataTable<DRMap>().GetDataRow(mapId);
+            // string[] enemyStr = drMap.Enemy.Split("/");
+            // string[] enemyProbStr = drMap.EnemyProb.Split("/");
+            // enemyProbs = IntArrayToStringArray(enemyProbStr);
+            // enemyIds = IntArrayToStringArray(enemyStr);
         }
 
         //生成敌人

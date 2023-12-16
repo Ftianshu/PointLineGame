@@ -85,7 +85,7 @@ namespace Survival
             Map = new MapManager(GetNode<Node>("MapRoot"));
             Entity = new EntityManager(GetNode<Node>("EntityRoot"), GetNode<Node>("EntityRoot/EnemyRoot"));
             Player = new PlayerManager();
-            Enemy = new EnemyManager();
+            Enemy = GetNode<EnemyManager>("EnemyManager");
             Face = new FaceManager();
         }
 

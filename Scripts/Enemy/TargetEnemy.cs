@@ -23,7 +23,7 @@ namespace Survival
         {
             QueueFree();
             GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);
-            GameEntry.Entity.CreateEnemy("Ordinary");
+            //GameEntry.Entity.CreateEnemy("Ordinary");
         }
 
         public override void OnLoad()
@@ -44,7 +44,7 @@ namespace Survival
                     {
                         if (!HasNode("MoveToTarget"))
                         {
-                            QueueFree();
+                            OnDead();
                         }
                         break;
                     }

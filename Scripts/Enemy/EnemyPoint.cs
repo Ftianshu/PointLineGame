@@ -8,12 +8,12 @@ namespace Survival
 
         private double time = 0;
 
-        private float disabledTime = 0.5f;
-
+        public override float disabledTime { get; set; }
 
         public override void _Ready()
         {
             base._Ready();
+            disabledTime = 0.2f;
             Lifetime = GameEntry.Enemy.pointLife;
         }
 

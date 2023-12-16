@@ -11,7 +11,11 @@ namespace Survival
 
         private double time = 0;
 
-        private float disabledTime = 0.5f;
+        public abstract float disabledTime
+        {
+            get;
+            set;
+        }
 
         [Signal]
         public delegate void pointDestroyEventHandler();

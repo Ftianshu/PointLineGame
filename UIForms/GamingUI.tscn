@@ -30,3 +30,11 @@ offset_bottom = 38.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "00:00"
+
+[node name="WaveCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 17.0
+offset_right = 512.0
+offset_bottom = 43.0
+text = "第x波"

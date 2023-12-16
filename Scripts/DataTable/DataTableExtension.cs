@@ -54,11 +54,11 @@ namespace Survival
         //     return new Quaternion(float.Parse(splitedValue[0]), float.Parse(splitedValue[1]), float.Parse(splitedValue[2]), float.Parse(splitedValue[3]));
         // }
 
-        // public static Vector2 ParseVector2(string value)
-        // {
-        //     string[] splitedValue = value.Split(',');
-        //     return new Vector2(float.Parse(splitedValue[0]), float.Parse(splitedValue[1]));
-        // }
+        public static Vector2 ParseVector2(string value)
+        {
+            string[] splitedValue = value.Split(',');
+            return new Vector2(float.Parse(splitedValue[0]), float.Parse(splitedValue[1]));
+        }
 
         // public static Vector3 ParseVector3(string value)
         // {

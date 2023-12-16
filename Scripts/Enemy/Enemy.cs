@@ -27,6 +27,9 @@ namespace Survival
 
         public int Exp;
 
+        [Signal]
+        public delegate void enemyDeathEventHandler();
+
         public override void _Ready()
         {
             BodyEntered += OnAttack;
@@ -49,6 +52,7 @@ namespace Survival
             if (IsDead())
             {
                 OnDead();
+                EmitSignal("enemyDeath");
             }
         }
 

@@ -7,6 +7,7 @@
 
 using System;
 using System.IO;
+using Godot;
 
 /// <summary>
 /// 对 BinaryReader 和 BinaryWriter 的扩展方法。
@@ -75,6 +76,12 @@ public static class BinaryExtension
     public static void Write7BitEncodedUInt32(this BinaryWriter binaryWriter, uint value)
     {
         Write7BitEncodedInt32(binaryWriter, (int)value);
+    }
+
+    public static Vector2 ReadVector2(this BinaryReader binaryReader)
+    {
+        //binaryReader.ReadVector2();
+        return new Vector2();
     }
 
     /// <summary>

@@ -12,12 +12,9 @@ namespace Survival
         internal static readonly char[] DataTrimSeparators = new char[] { '\"' };
 
         public static readonly string[] DataRowAssetName = {
-            "Map",
-            "UIForm",
             "Enemy",
-            "Skill",
-            "Weapon",
-            "MainSkill"
+            "EnemyGenerator",
+            "UIForm"
         };
 
         private Dictionary<Type, DataTableBase> m_DataTables;
