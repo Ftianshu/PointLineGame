@@ -23,6 +23,7 @@ namespace Survival
         {
             QueueFree();
             GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);
+            EmitSignal("enemyDeath");
             //GameEntry.Entity.CreateEnemy("Ordinary");
         }
 

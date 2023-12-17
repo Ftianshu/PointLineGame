@@ -16,7 +16,6 @@ namespace Survival
         {
             TimeLable = GetNode<Label>("Time");
             WaveCount = GetNode<Label>("WaveCount");
-            GD.Print(GameEntry.Enemy.Name);
 
             GameEntry.Enemy.Connect("waveUpdate", new Callable(this, "UpdateWaveLable"));
         }

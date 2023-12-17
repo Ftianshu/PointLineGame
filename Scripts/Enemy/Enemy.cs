@@ -52,7 +52,6 @@ namespace Survival
             if (IsDead())
             {
                 OnDead();
-                EmitSignal("enemyDeath");
             }
         }
 

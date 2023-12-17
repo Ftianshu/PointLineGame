@@ -61,11 +61,15 @@ namespace Survival
             // }
             //初始化时钟位置
             currentIndex = 0;
-            // currentLivingEnemy = 
+            currentLivingEnemy = EnemyMessage.Count;
         }
 
         public void GenerateEnemy()
         {
+            if (EnemyMessage.Count == 0)
+            {
+                return;
+            }
             switch (EnemyMessage[currentIndex].GenerateType)
             {
                 case "指定位置":
@@ -75,6 +79,7 @@ namespace Survival
                             TargetEnemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as TargetEnemy;
                             enemy.Position = EnemyMessage[currentIndex].Position;
                             enemy.SetTarget(EnemyMessage[currentIndex].Target);
+                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
                         }
                         else
                         {
@@ -91,6 +96,7 @@ namespace Survival
                             TargetEnemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as TargetEnemy;
                             enemy.Position = EnemyMessage[currentIndex].Position;
                             enemy.SetTarget(EnemyMessage[currentIndex].Target);
+                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
                         }
                         else
                         {
@@ -120,11 +126,11 @@ namespace Survival
             }
         }
 
-        private void OnEnemyDeath()
+        public void OnEnemyDeath()
         {
             currentLivingEnemy--;
             //进入下一波，或者进入一些别的流程
-            if (currentLivingEnemy < 0)
+            if (currentLivingEnemy < 1)
             {
                 GenerateNextWaveEnemy();
             }
