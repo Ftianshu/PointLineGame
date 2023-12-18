@@ -18,66 +18,9 @@ namespace Survival
 
         public FaceManager()
         {
-            // 运行速度还是下面的快，下面跳转少，优化一下
-            // for (int i = 0; i < faceCount; i++)
-            // {
-            //     faces[i] = new bool[faceWidth][];
-            //     for (int j = 0; j < faceWidth; j++)
-            //     {
-            //         faces[i][j] = new bool[faceHeight];
-            //     }
-            // }
             lineIds[0] = new List<int>();
             lineIds[1] = new List<int>();
             lineIds[2] = new List<int>();
-
-        }
-
-        //FaceId 默认：0-玩家平面；1-敌人平面；2-函数平面
-        public void AddPoint(Vector2 point, int faceId, int lineId)
-        {
-            // 如果有新的line加入，在list中记录
-            if (!lineIds[faceId].Contains(lineId))
-            {
-                GameEntry.Entity.CreateLine(lineId, new Color(255, 255, 255), faceId);
-                lineIds[faceId].Add(lineId);
-                lastPoint[faceId] = point;
-            }
-
-            // 距离过近不生成点
-            if (lastPoint[faceId].DistanceTo(point) < 2)
-            {
-                return;
-            }
-
-            //添加点
-            GameEntry.Entity.AddLinePoint(point, lineId);
-            GameEntry.Entity.CreatePoint("points", lineId, point);
-
-            lastPoint[faceId] = point;
-        }
-
-        public void AddEnemyPoint(Vector2 point, int lineId, int faceId = (int)FaceId.EnemyFace)
-        {
-            // 如果有新的line加入，在list中记录
-            if (!lineIds[faceId].Contains(lineId))
-            {
-                GameEntry.Entity.CreateLine(lineId, new Color(255, 0, 0), faceId);
-                lineIds[faceId].Add(lineId);
-                lastPoint[faceId] = point;
-            }
-
-            // 距离过近不生成点
-            if (lastPoint[faceId].DistanceTo(point) < 2)
-            {
-                return;
-            }
-
-            //添加点
-            GameEntry.Entity.AddLinePoint(point, lineId);
-            GameEntry.Entity.CreatePoint("EnemyPoint", lineId, point);
-
-            lastPoint[faceId] = point;
         }
 
 
@@ -186,9 +129,10 @@ namespace Survival
             lineIds[faceId].Clear();
         }
 
-        public int GenerateLineId()
-        {
-            return cout++;
-        }
+        // public int GenerateLineId()
+        // {
+        //     GameEntry.Entity.CreateLine(cout, new Color(255, 255, 255), 0);
+        //     return cout++;
+        // }
     }
 }

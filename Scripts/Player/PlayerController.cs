@@ -40,7 +40,7 @@ namespace Survival
             Timer rushingTimer = GetNode<Timer>("RushingTimer");
             rushingTimer.Timeout += RushingFinish;
             rushingTimer.WaitTime = RushDuration;
-            currentLine = GameEntry.Face.GenerateLineId();
+            currentLine = GameEntry.Entity.CreatePlayerLine();
         }
 
         private void RushFinish()
@@ -121,9 +121,9 @@ namespace Survival
 
         private void AddPointToLine(Vector2 position)
         {
-            // GameEntry.Entity.AddLinePoint(position);
+            GameEntry.Entity.AddLinePoint(position, currentLine);
             // GameEntry.Entity.CreatePoint("points", position);
-            GameEntry.Face.AddPoint(position, (int)FaceId.PlayerFace, currentLine);
+            // GameEntry.Face.AddPoint(position, (int)FaceId.PlayerFace, currentLine);
         }
     }
 }

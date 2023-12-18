@@ -11,7 +11,7 @@ namespace Survival
         private Node PointsRoot;
         private Node FaceRoot;
         private Coordinate coordinate;
-
+        private int lineCout = 0;
         public Node LineRoot;
 
         private Dictionary<int, Line> lines = new Dictionary<int, Line>();
@@ -78,16 +78,42 @@ namespace Survival
             EntityRoot.AddChild(n);
         }
 
-        public void CreateLine(int lineId, Color color, int faceId)
+        public int CreateLine(Color color, int faceId)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
             Line n = (Line)entity.Instantiate();
-            n.lineId = lineId;
-            n.faceId = (int)faceId;
+            n.lineId = lineCout;
+            n.faceId = faceId;
             n.GetNode<Line2D>("Line2D").DefaultColor = color;
             LineRoot.AddChild(n);
-            n.Name = lineId.ToString();
-            lines.Add(lineId, n);
+            n.Name = lineCout.ToString();
+            lines.Add(lineCout, n);
+            return lineCout++;
+        }
+
+        public int CreatePlayerLine()
+        {
+            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("PlayerLine"));
+            Line n = (Line)entity.Instantiate();
+            n.lineId = lineCout;
+            n.faceId = 0;
+            LineRoot.AddChild(n);
+            n.Name = lineCout.ToString();
+            lines.Add(lineCout, n);
+            return lineCout++;
+        }
+
+        public int CreateEnemyLine()
+        {
+            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("EnemyLine"));
+            Line n = (Line)entity.Instantiate();
+            n.lineId = lineCout;
+            n.faceId = 1;
+            n.GetNode<Line2D>("Line2D").DefaultColor = new Color(255, 0, 255);
+            LineRoot.AddChild(n);
+            n.Name = lineCout.ToString();
+            lines.Add(lineCout, n);
+            return lineCout++;
         }
 
         public Line GetLine(int lineId)
@@ -132,7 +158,7 @@ namespace Survival
 
         public void AddLinePoint(Vector2 position, int lineId)
         {
-            (lines[lineId] as Line).AddPoint(position);
+            lines[lineId].AddPoint(position);
         }
 
         public void CreateFace(string AssetName, Vector2[] points, FaceId faceId = FaceId.PlayerFace)

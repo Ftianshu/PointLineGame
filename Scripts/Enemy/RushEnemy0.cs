@@ -42,7 +42,7 @@ namespace Survival
             var behavior2 = new RotateToPlayer();
             behavior2.Name = "RotateToPlayer";
             AddChild(behavior2);
-            lineId = GameEntry.Face.GenerateLineId();
+            lineId = GameEntry.Entity.CreateEnemyLine();
             Position = new Vector2(-100, 0);
         }
 
@@ -69,7 +69,7 @@ namespace Survival
                         if (!HasNode("RushToPlayer"))
                         {
                             State = EnemyState.Exhausted;
-                            lineId = GameEntry.Face.GenerateLineId();
+                            lineId = GameEntry.Entity.CreateEnemyLine();
                         }
                         break;
                     }

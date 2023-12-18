@@ -33,8 +33,7 @@ namespace Survival
             var behavior = new MoveToTarget();
             behavior.Name = "MoveToTarget";
             AddChild(behavior);
-            Target = new Vector2(200, 0);
-            lineId = GameEntry.Face.GenerateLineId();
+            lineId = GameEntry.Entity.CreateEnemyLine();
         }
 
         public override void OnUpdate(double delta)

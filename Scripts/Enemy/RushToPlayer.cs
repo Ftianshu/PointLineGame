@@ -25,7 +25,7 @@ namespace Survival
             }
 
             Vector2 direct = target - me.Position;
-            GameEntry.Face.AddPoint(me.Position, (int)FaceId.EnemyFace, me.lineId);
+
             me.Position += direct.Normalized() * me.RushSpeed * (float)delta;
         }
     }
