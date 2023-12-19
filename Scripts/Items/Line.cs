@@ -1,12 +1,13 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Survival
 {
     public abstract partial class Line : Area2D
     {
-        private Line2D line;
+        public Line2D line;
         public int lineId;
         public int faceId;
 
@@ -17,7 +18,6 @@ namespace Survival
 
         public float PointLifetime = 3f;
         private double time = 0;
-        private int count = 0;
 
         private Vector2 lastPoint;
 
@@ -46,7 +46,7 @@ namespace Survival
 
         public void AddPoint(Vector2 position)
         {
-            if (lastPoint.DistanceTo(position) < 5)
+            if (lastPoint.DistanceTo(position) < 2)
                 return;
 
             line.AddPoint(position);
@@ -59,7 +59,6 @@ namespace Survival
             var collision = new CollisionShape2D();
 
             AddChild(collision);
-            count++;
 
             var segment = new SegmentShape2D();
             segment.A = line.Points[line.Points.Length - 2];
@@ -68,7 +67,7 @@ namespace Survival
             lastPoint = position;
 
             Timer timer = new Timer();
-            timer.WaitTime = 3f;
+            timer.WaitTime = 8f;
             timer.Autostart = true;
             timer.Timeout += DisableCollision;
             Timers.AddChild(timer);
@@ -83,40 +82,76 @@ namespace Survival
             DisabledPointIndex++;
         }
 
-
-        private void PointDestroy(Point point)
+        public int GetPointIndex(Vector2 point)
         {
-            // for (int i = 0; i < linkPoints.Count; i++)
-            // {
-            //     if (linkPoints[i].Contain(point))
-            //     {
-            //         if (linkPoints[i].point1 == point)
-            //         {
-            //             linkedLines.Remove(linkPoints[i].point2.lineId);
-            //             Line line = GameEntry.Entity.GetLine(linkPoints[i].point2.lineId);
-            //             line.linkedLines.Remove(lineId);
-            //             line.linkPoints.Remove(linkPoints[i]);
-            //         }
-            //         else
-            //         {
-            //             linkedLines.Remove(linkPoints[i].point1.lineId);
-            //             Line line = GameEntry.Entity.GetLine(linkPoints[i].point1.lineId);
-            //             line.linkedLines.Remove(lineId);
-            //             line.linkPoints.Remove(linkPoints[i]);
-            //         }
+            for (int i = 0; i < line.Points.Length; i++)
+            {
+                if (point == line.Points[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
-            //         linkPoints.RemoveAt(i);
+        public int GetRecentPointIndex(Vector2 point)
+        {
+            float lastDistance = float.MaxValue;
+            for (int i = 0; i < line.Points.Length; i++)
+            {
+                float distance = point.DistanceSquaredTo(line.Points[i]);
+                if (distance < lastDistance)
+                {
+                    lastDistance = distance;
+                }
+                else if (distance < 25)
+                {
+                    return i;
+                }
+            }
+            //错误结果
+            return -1;
+        }
 
-            //         //GD.Print("PointDestroy");
-            //         break;
-            //     }
-            // }
-            // if (linkPoints.Contains(point))
-            // {
-            //     linkPoints.Remove(point);
-            //     linkedLines.Remove(point.lineId);
-            // }
-            // line.RemovePoint(0);
+        public Vector2 GetRecentPoint(Vector2 point)
+        {
+            float lastDistance = float.MaxValue;
+            for (int i = 0; i < line.Points.Length; i++)
+            {
+                float distance = point.DistanceSquaredTo(line.Points[i]);
+                if (distance < lastDistance)
+                {
+                    lastDistance = distance;
+                }
+                else if (distance < 25)
+                {
+                    return line.Points[i];
+                }
+            }
+            return point;
+        }
+
+
+        public void ResetLine()
+        {
+            //直接移除玩家平面内多余的线条
+            if (faceId == 0 && lineId != GameEntry.Player.playerEntity.currentLine)
+            {
+                GameEntry.Entity.DelLine(lineId);
+            }
+
+            for (int i = 2; i < GetChildCount(); i++)
+            {
+                GetChild(i).QueueFree();
+            }
+
+            foreach (Node timer in Timers.GetChildren())
+            {
+                timer.QueueFree();
+            }
+
+            line.Points = new List<Vector2>().ToArray();
+            DisabledPointIndex = 2;
         }
     }
 

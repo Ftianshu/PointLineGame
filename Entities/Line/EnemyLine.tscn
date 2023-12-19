@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp6bc83ivwl7p"]
 
-[ext_resource type="Script" path="res://Scripts/Items/EnemyLine.cs" id="1_sonqi"]
+[ext_resource type="Script" path="res://Scripts/Items/EnemyLine.cs" id="1_0ro4u"]
 
 [node name="EnemyLine" type="Area2D"]
-script = ExtResource("1_sonqi")
+script = ExtResource("1_0ro4u")
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 3.0

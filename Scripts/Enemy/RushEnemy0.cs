@@ -122,16 +122,6 @@ namespace Survival
                 Face face = area as Face;
                 HP -= face.GetDamage();
             }
-            else if (area.GetType().ToString() == "Survival.Point")
-            {
-                Point point = area as Point;
-                if (lastDamageForm != point.lineId)
-                {
-                    lastDamageForm = point.lineId;
-                    //造成伤害
-                    //GD.Print("造成伤害");
-                }
-            }
         }
     }
 }

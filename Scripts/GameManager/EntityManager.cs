@@ -33,15 +33,6 @@ namespace Survival
             return n;
         }
 
-        public void CreatePoint(string AssetName, int lineId, Vector2 position)
-        {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset(AssetName));
-            Point n = (Point)entity.Instantiate();
-            n.Position = position;
-            n.lineId = lineId;
-            lines[lineId].AddChild(n);
-        }
-
         public Node2D CreateEnemy(string AssetName, Vector2 position = default(Vector2))
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEnemyAsset(AssetName));
@@ -80,7 +71,7 @@ namespace Survival
 
         public int CreateLine(Color color, int faceId)
         {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("line"));
+            var entity = GD.Load<PackedScene>(AssetUtility.GetLineAsset("line"));
             Line n = (Line)entity.Instantiate();
             n.lineId = lineCout;
             n.faceId = faceId;
@@ -93,7 +84,7 @@ namespace Survival
 
         public int CreatePlayerLine()
         {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("PlayerLine"));
+            var entity = GD.Load<PackedScene>(AssetUtility.GetLineAsset("PlayerLine"));
             Line n = (Line)entity.Instantiate();
             n.lineId = lineCout;
             n.faceId = 0;
@@ -105,7 +96,7 @@ namespace Survival
 
         public int CreateEnemyLine()
         {
-            var entity = GD.Load<PackedScene>(AssetUtility.GetPointAsset("EnemyLine"));
+            var entity = GD.Load<PackedScene>(AssetUtility.GetLineAsset("EnemyLine"));
             Line n = (Line)entity.Instantiate();
             n.lineId = lineCout;
             n.faceId = 1;
@@ -118,13 +109,29 @@ namespace Survival
 
         public Line GetLine(int lineId)
         {
-            return (Line)lines[lineId];
+            return lines[lineId];
         }
 
         public void DelLine(int lineId)
         {
             lines[lineId].QueueFree();
             lines.Remove(lineId);
+        }
+
+        public void ResetLine(int lineId)
+        {
+            lines[lineId].ResetLine();
+        }
+
+        public void ResetFaceLine(int faceId)
+        {
+            foreach (Line line in lines.Values)
+            {
+                if (line.faceId == faceId)
+                {
+                    line.ResetLine();
+                }
+            }
         }
 
         public void ClearLinePoints(int lineId)

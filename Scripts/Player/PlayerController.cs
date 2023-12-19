@@ -64,7 +64,7 @@ namespace Survival
             {
                 isRushing = true;
                 isRushOk = false;
-                currentLine++;
+                currentLine = GameEntry.Entity.CreatePlayerLine();
                 GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                 GetNode<Timer>("RushTimer").Start();
                 GetNode<Timer>("RushingTimer").Start();

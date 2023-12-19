@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0oo7qnu8yk43"]
 
-[ext_resource type="Script" path="res://Scripts/Items/PlayerLine.cs" id="1_pnbna"]
+[ext_resource type="Script" path="res://Scripts/Items/PlayerLine.cs" id="1_0m017"]
 
 [node name="PlayerLine" type="Area2D"]
-script = ExtResource("1_pnbna")
+script = ExtResource("1_0m017")
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 3.0

@@ -24,9 +24,9 @@ namespace Survival
             return "Entities/Items/" + assetName + ".tscn";
         }
 
-        public static string GetPointAsset(string assetName)
+        public static string GetLineAsset(string assetName)
         {
-            return "Entities/Point/" + assetName + ".tscn";
+            return "Entities/Line/" + assetName + ".tscn";
         }
         public static string GetFaceAsset(string assetName)
         {
