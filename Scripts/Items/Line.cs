@@ -104,7 +104,7 @@ namespace Survival
                 {
                     lastDistance = distance;
                 }
-                else if (distance < 25)
+                else if (distance < 50)
                 {
                     return i;
                 }
