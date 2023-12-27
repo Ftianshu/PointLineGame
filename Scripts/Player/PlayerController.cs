@@ -59,7 +59,6 @@ namespace Survival
             if (GameEntry.Game.gamePause)
                 return;
 
-
             if (Input.IsActionPressed("rush") && isRushOk)
             {
                 isRushing = true;

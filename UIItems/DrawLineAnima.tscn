@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5x7x6fbigcn2"]
+
+[ext_resource type="Texture2D" uid="uid://b4en8giqqpd3j" path="res://icon.svg" id="2_7vhsl"]
+
+[node name="DrawLineAnima" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7vhsl")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-500, -500, 0, 0)
+width = 5.0

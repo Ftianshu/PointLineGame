@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ds07ctn638rfa"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.cs" id="1_qvs02"]
+[ext_resource type="Script" path="res://Scripts/Enemy/OrdinaryEnemy.cs" id="1_2p3rj"]
 [ext_resource type="Texture2D" uid="uid://sbxlxx1eoshc" path="res://Sprites/Circle.png" id="2_62gdx"]
 [ext_resource type="Script" path="res://Scripts/Enemy/MoveToPlayer.cs" id="3_yhlyo"]
 
@@ -13,8 +13,7 @@ disable_mode = 2
 collision_layer = 4
 collision_mask = 11
 input_pickable = false
-script = ExtResource("1_qvs02")
-Speed = 50
+script = ExtResource("1_2p3rj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4qxfx")

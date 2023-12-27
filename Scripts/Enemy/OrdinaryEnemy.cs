@@ -55,14 +55,7 @@ namespace Survival
             {
                 case EnemyState.MoveToPlayer:
                     {
-                        float distance = GameEntry.Player.playerEntity.Position.DistanceTo(Position);
-                        if (distance < 50)
-                        {
-                            GD.Print("Rush");
-                            State = EnemyState.RushToPlayer;
-                            RemoveChild(FindChild("MoveToPlayer"));
-                            AddChild(new RushToPlayer());
-                        }
+
                         break;
                     }
                 case EnemyState.RushToPlayer:
@@ -77,12 +70,13 @@ namespace Survival
 
         public override void OnAttack(Node2D body)
         {
-            throw new NotImplementedException();
+            // 对玩家造成伤害
+            GameEntry.Player.CauseDamage(Attack);
         }
 
         public override void OnBeAttacked(Area2D area)
         {
-            throw new NotImplementedException();
+            // 播放动画
         }
     }
 }

@@ -79,6 +79,22 @@ namespace Survival
             GameEntry.UI.OpenUIForm(UIFormId.LevelUpForm);
         }
 
+        public void CauseDamage(float damage)
+        {
+            m_HP -= damage;
+            if (IsPlayerDead())
+            {
+                // GameOver
+            }
+        }
+
+        public bool IsPlayerDead()
+        {
+            if (m_HP < 0)
+                return true;
+            return false;
+        }
+
 
         public void GainMoney(int gain)
         {

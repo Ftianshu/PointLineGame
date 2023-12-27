@@ -63,8 +63,7 @@ namespace Survival
         {
             if (area.GetType().ToString() == "Survival.Face")
             {
-                Face face = area as Face;
-                HP -= face.GetDamage();
+                HP -= (area as Face).GetDamage();
             }
         }
 
