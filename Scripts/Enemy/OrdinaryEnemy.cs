@@ -11,22 +11,6 @@ namespace Survival
 
         // public IImpact[] impacts;
 
-        public override void _Ready()
-        {
-            base._Ready();
-            var behavior = new MoveToPlayer();
-            State = EnemyState.MoveToPlayer;
-            behavior.Name = "MoveToPlayer";
-            AddChild(behavior);
-            Position = new Vector2(-100, 0);
-            OnLoad();
-        }
-
-        public override void _Process(double delta)
-        {
-            base._Process(delta);
-        }
-
 
         private bool IsDead()
         {
@@ -41,12 +25,17 @@ namespace Survival
         {
             QueueFree();
             GameEntry.Entity.CreateEffect("EnemyDeathEffect", Position);
-            GameEntry.Entity.CreateEnemy("Ordinary");
+            // 掉落经验材料
+            GameEntry.Entity.CreateEntity("Other/ExpPoint", Position);
+            EmitSignal("enemyDeath");
         }
 
         public override void OnLoad()
         {
-            throw new NotImplementedException();
+            var behavior = new MoveToPlayer();
+            State = EnemyState.MoveToPlayer;
+            behavior.Name = "MoveToPlayer";
+            AddChild(behavior);
         }
 
         public override void OnUpdate(double delta)
@@ -76,7 +65,10 @@ namespace Survival
 
         public override void OnBeAttacked(Area2D area)
         {
-            // 播放动画
+            if (area.GetType().ToString() == "Survival.Face")
+            {
+                HP -= (area as Face).GetDamage();
+            }
         }
     }
 }

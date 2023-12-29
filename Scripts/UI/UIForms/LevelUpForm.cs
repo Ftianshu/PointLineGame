@@ -5,7 +5,7 @@ namespace Survival
 {
     public partial class LevelUpForm : Panel
     {
-        private string[] Descs = new string[10] { "力量+", "体质+", "敏捷+", "精神+", "魅力+", "金灵根+", "木灵根+", "水灵根+", "火灵根+", "土灵根+" };
+        //private string[] Descs = new string[10] { "力量+", "体质+", "敏捷+", "精神+", "魅力+", "金灵根+", "木灵根+", "水灵根+", "火灵根+", "土灵根+" };
         public override void _Ready()
         {
             VisibilityChanged += OnShow;
@@ -32,7 +32,7 @@ namespace Survival
         {
             //先抽出新的三个选项
             List<int> ids = new List<int>();
-            int id = (int)(GD.Randi() % 10);
+            int id = (int)(GD.Randi() % 4);
             while (ids.Count < 3)
             {
                 if (!ids.Contains(id))
@@ -40,15 +40,17 @@ namespace Survival
                     ids.Add(id);
                     //GD.Print(id);
                 }
-                id = (int)(GD.Randi() % 10);
+                id = (int)(GD.Randi() % 4);
             }
             //更新
             Node root = GetNode("LevelUp");
             for (int i = 0; i < root.GetChildCount(); i++)
             {
-                root.GetChild<LevelUpOption>(i).SetDesc(ids[i], Descs[ids[i]]);
+                DRLevelUpOption drLevelUp = GameEntry.DataTable.GetDataTable<DRLevelUpOption>().GetDataRow(ids[i]);
+                root.GetChild<LevelUpOption>(i).SetDesc(drLevelUp);
             }
         }
+
 
         //选择其中的一个奖励
         public void ChooseOption(int id)

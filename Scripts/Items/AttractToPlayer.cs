@@ -4,13 +4,13 @@ using System;
 namespace Survival
 {
 
-    public partial class MoveToPlayer : Node
+    public partial class AttractToPlayer : Node
     {
-        private Enemy me;
+        private ExpPoint me;
 
         public override void _Ready()
         {
-            me = (Enemy)GetParent();
+            me = (ExpPoint)GetParent();
         }
         public override void _Process(double delta)
         {
@@ -18,7 +18,7 @@ namespace Survival
                 return;
 
 
-            Vector2 direct = GameEntry.Player.playerEntity.Position - me.Position;
+            Vector2 direct = GameEntry.Player.playerEntity.ToGlobal(new Vector2(0, -6)) - me.Position;
             me.Position += direct.Normalized() * me.Speed * (float)delta;
         }
     }

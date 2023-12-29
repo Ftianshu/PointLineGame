@@ -14,7 +14,8 @@ namespace Survival
         public static readonly string[] DataRowAssetName = {
             "Enemy",
             "EnemyGenerator",
-            "UIForm"
+            "UIForm",
+            "LevelUpOption"
         };
 
         private Dictionary<Type, DataTableBase> m_DataTables;

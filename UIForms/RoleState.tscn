@@ -31,3 +31,17 @@ texture = ExtResource("2_ea33m")
 [node name="RoleIcon2" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_0drik")
+
+[node name="ExpBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 35.0
+offset_right = 224.0
+offset_bottom = 62.0
+
+[node name="HPBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 6.0
+offset_right = 224.0
+offset_bottom = 33.0

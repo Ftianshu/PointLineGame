@@ -6,7 +6,6 @@ namespace Survival
 
     public partial class PlayerController : CharacterBody2D
     {
-        [Export]
         public float MaxSpeed = 400; // How fast the player will move (pixels/sec).
 
         public float RushSpeed = 800;
@@ -31,6 +30,12 @@ namespace Survival
         private bool isRushOk = true;
 
         public int currentLine;
+
+        [Signal]
+        public delegate void playerExpChangedEventHandler();
+
+        [Signal]
+        public delegate void playerHPChangedEventHandler();
 
         public override void _Ready()
         {

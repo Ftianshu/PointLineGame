@@ -18,14 +18,14 @@ using Godot;
 namespace Survival
 {
     /// <summary>
-    /// 界面配置表。
+    /// 升级选项表。
     /// </summary>
-    public class DRUIForm : DataRowBase
+    public class DRLevelUpOption : DataRowBase
     {
         private int m_Id = 0;
 
         /// <summary>
-        /// 获取界面编号。
+        /// 获取生成编号。
         /// </summary>
         public override int Id
         {
@@ -36,36 +36,27 @@ namespace Survival
         }
 
         /// <summary>
-        /// 获取资源名称。
+        /// 获取名称。
         /// </summary>
-        public string AssetName
+        public string Name
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取界面组名称。
+        /// 获取类型。
         /// </summary>
-        public string UIGroupName
+        public string Type
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// 获取是否允许多个界面实例。
+        /// 获取属性-值。
         /// </summary>
-        public bool AllowMultiInstance
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// 获取是否暂停被其覆盖的界面。
-        /// </summary>
-        public bool PauseCoveredUIForm
+        public string Impact
         {
             get;
             private set;
@@ -82,11 +73,10 @@ namespace Survival
             int index = 0;
             index++;
             m_Id = int.Parse(columnStrings[index++]);
+            Name = columnStrings[index++];
+            Type = columnStrings[index++];
             index++;
-            AssetName = columnStrings[index++];
-            UIGroupName = columnStrings[index++];
-            AllowMultiInstance = bool.Parse(columnStrings[index++]);
-            PauseCoveredUIForm = bool.Parse(columnStrings[index++]);
+            Impact = columnStrings[index++];
 
             GeneratePropertyArray();
             return true;
@@ -99,10 +89,9 @@ namespace Survival
                 using (BinaryReader binaryReader = new BinaryReader(memoryStream, Encoding.UTF8))
                 {
                     m_Id = binaryReader.Read7BitEncodedInt32();
-                    AssetName = binaryReader.ReadString();
-                    UIGroupName = binaryReader.ReadString();
-                    AllowMultiInstance = binaryReader.ReadBoolean();
-                    PauseCoveredUIForm = binaryReader.ReadBoolean();
+                    Name = binaryReader.ReadString();
+                    Type = binaryReader.ReadString();
+                    Impact = binaryReader.ReadString();
                 }
             }
 

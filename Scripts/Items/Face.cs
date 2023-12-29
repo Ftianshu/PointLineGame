@@ -11,7 +11,7 @@ namespace Survival
 
         public Polygon2D polygonShape;
 
-        private double Lifetime = 0.5;
+        private double Lifetime = 0.1;
 
         // 代表阵营
         public int faceId;
@@ -24,7 +24,6 @@ namespace Survival
             polygonShape = GetNode<Polygon2D>("Polygon2D");
             polygonPhysics.SetDeferred("polygon", points);
             polygonShape.Polygon = points;
-            GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
             GameEntry.Entity.CreateHud(GetSquare(), GetCenter());
         }
 

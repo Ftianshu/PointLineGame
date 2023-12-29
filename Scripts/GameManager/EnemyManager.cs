@@ -85,6 +85,7 @@ namespace Survival
                         {
                             Enemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as Enemy;
                             enemy.Position = EnemyMessage[currentIndex].Position;
+                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
                         }
 
                         break;
@@ -102,6 +103,7 @@ namespace Survival
                         {
                             Enemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as Enemy;
                             enemy.Position = EnemyMessage[currentIndex].Position;
+                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
                         }
                         break;
                     }

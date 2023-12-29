@@ -25,15 +25,19 @@ namespace Survival
             LineRoot = entityRoot.FindChild("LineRoot");
         }
 
-        public Node CreateEntity(string AssetName)
+        public Node CreateEntity(string AssetName, Vector2 Position = default)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEntityAsset(AssetName));
             Node n = entity.Instantiate();
+            if (Position != default)
+            {
+                (n as Node2D).Position = Position;
+            }
             EntityRoot.AddChild(n);
             return n;
         }
 
-        public Node2D CreateEnemy(string AssetName, Vector2 position = default(Vector2))
+        public Node2D CreateEnemy(string AssetName, Vector2 position = default)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEnemyAsset(AssetName));
             Node2D n = entity.Instantiate() as Node2D;
@@ -61,7 +65,7 @@ namespace Survival
             EntityRoot.AddChild(n);
         }
 
-        public void CreateEffect(string AssetName, Vector2 position = default(Vector2))
+        public void CreateEffect(string AssetName, Vector2 position = default)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetEffectAsset(AssetName));
             Node2D n = (Node2D)entity.Instantiate();

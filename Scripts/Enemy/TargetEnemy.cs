@@ -56,7 +56,8 @@ namespace Survival
 
         public override void OnAttack(Node2D body)
         {
-            //throw new NotImplementedException();
+            // 对玩家造成伤害
+            GameEntry.Player.CauseDamage(Attack);
         }
 
         public override void OnBeAttacked(Area2D area)
