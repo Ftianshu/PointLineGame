@@ -11,6 +11,7 @@ namespace Survival
         private float m_Exp;
         private float m_MaxSpeed;
         private float m_Acceleration;
+        private float m_TurnSpeed = 0.03f;
         public int level;
 
         public int next_level_Exp;

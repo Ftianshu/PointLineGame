@@ -1,0 +1,337 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsydlqp735ccy"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/RoleData.cs" id="1_ffjpg"]
+[ext_resource type="Script" path="res://Scripts/UI/UIItems/PropName.cs" id="2_22ft8"]
+
+[node name="RoleData" type="Panel"]
+offset_right = 213.0
+offset_bottom = 380.0
+script = ExtResource("1_ffjpg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 95.0
+offset_bottom = 37.0
+text = "角色属性"
+
+[node name="PropNames" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 45.0
+offset_right = 100.0
+offset_bottom = 375.0
+
+[node name="prop1" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "玩家等级"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop1"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop1/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop2" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "最大生命值"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop2"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "最大生命值"
+
+[node name="prop3" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "平面伤害"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop3"]
+visible = false
+layout_mode = 0
+offset_left = -276.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop3/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -14.5
+offset_right = 86.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "平面所造成的基础伤害"
+
+[node name="prop4" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "线条伤害"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop4"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop4/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop5" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "最大速度"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop5"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop5/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop6" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "加速度"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop6"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop6/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop7" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "护甲"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop7"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop7/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop8" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "%闪避"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop8"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop8/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="prop9" type="Label" parent="PropNames"]
+layout_mode = 2
+mouse_filter = 0
+text = "幸运"
+script = ExtResource("2_22ft8")
+
+[node name="Panel" type="Panel" parent="PropNames/prop9"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = 4.0
+offset_right = -33.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="PropNames/prop9/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -20.5
+offset_right = 60.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "玩家等级"
+
+[node name="PropDatas" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 45.0
+offset_right = 189.0
+offset_bottom = 375.0
+
+[node name="data1" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data2" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data3" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data4" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data5" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data6" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data7" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data8" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="data9" type="Label" parent="PropDatas"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2

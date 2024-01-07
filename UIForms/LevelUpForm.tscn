@@ -1,20 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://sh67ik0kv7bm"]
+[gd_scene load_steps=10 format=3 uid="uid://sh67ik0kv7bm"]
 
 [ext_resource type="Script" path="res://Scripts/UI/UIForms/LevelUpForm.cs" id="1_gvg7u"]
 [ext_resource type="PackedScene" uid="uid://yfv221d1qayp" path="res://UIItems/LevelUpOption.tscn" id="2_o26i6"]
 [ext_resource type="Shader" path="res://UIItems/LevelUpOption.gdshader" id="3_2gd86"]
+[ext_resource type="PackedScene" uid="uid://dsydlqp735ccy" path="res://UIItems/RoleData.tscn" id="4_mwny6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diov0"]
+bg_color = Color(0.407843, 0.407843, 0.407843, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v3uwa"]
 shader = ExtResource("3_2gd86")
-shader_parameter/mouseIn = null
+shader_parameter/rarity = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3umov"]
 shader = ExtResource("3_2gd86")
-shader_parameter/mouseIn = null
+shader_parameter/rarity = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqf0d"]
 shader = ExtResource("3_2gd86")
-shader_parameter/mouseIn = null
+shader_parameter/rarity = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c06r0"]
+shader = ExtResource("3_2gd86")
+shader_parameter/rarity = null
 
 [node name="LevelUpForm" type="Panel"]
 anchors_preset = 15
@@ -22,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_diov0")
 script = ExtResource("1_gvg7u")
 
 [node name="Title" type="Label" parent="."]
@@ -35,7 +44,7 @@ offset_right = 38.0
 offset_bottom = 85.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
-text = "升级"
+text = "升级！"
 
 [node name="LevelUp" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -44,13 +53,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -150.0
-offset_right = 400.0
-offset_bottom = 150.0
+offset_left = -542.0
+offset_top = -139.0
+offset_right = 318.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 20
 
 [node name="LevelUpOption" parent="LevelUp" instance=ExtResource("2_o26i6")]
 material = SubResource("ShaderMaterial_v3uwa")
@@ -63,3 +72,24 @@ layout_mode = 2
 [node name="LevelUpOption3" parent="LevelUp" instance=ExtResource("2_o26i6")]
 material = SubResource("ShaderMaterial_yqf0d")
 layout_mode = 2
+
+[node name="LevelUpOption4" parent="LevelUp" instance=ExtResource("2_o26i6")]
+material = SubResource("ShaderMaterial_c06r0")
+layout_mode = 2
+
+[node name="RoleData" parent="." instance=ExtResource("4_mwny6")]
+layout_mode = 0
+offset_left = 913.0
+offset_top = 111.0
+offset_right = 1126.0
+offset_bottom = 491.0
+
+[node name="Reflash" type="Button" parent="."]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 392.0
+offset_right = 521.0
+offset_bottom = 427.0
+text = "刷新"
+
+[connection signal="pressed" from="Reflash" to="." method="UpdateOptions"]
