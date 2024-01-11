@@ -167,9 +167,14 @@ namespace Survival
             coordinate.DrawPoint(x, y);
         }
 
-        public void AddLinePoint(Vector2 position, int lineId)
+        public void AddPlayerLinePoint(Vector2 position, int lineId)
         {
-            lines[lineId].AddPoint(position);
+            lines[lineId].AddPoint(position, GameEntry.Player.pointLife);
+        }
+
+        public void AddEnemyLinePoint(Vector2 position, int lineId)
+        {
+            lines[lineId].AddPoint(position, GameEntry.Enemy.pointLife);
         }
 
         public void CreateFace(string AssetName, Vector2[] points, FaceId faceId = FaceId.PlayerFace)

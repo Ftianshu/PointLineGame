@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://biypwfp0r8236"]
+[gd_scene load_steps=2 format=3 uid="uid://biypwfp0r8236"]
 
-[ext_resource type="Texture2D" uid="uid://sbxlxx1eoshc" path="res://Sprites/Circle.png" id="1_6bnfh"]
 [ext_resource type="Script" path="res://Scripts/Enemy/TargetEnemy.cs" id="1_ax8nq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_quw8g"]
-radius = 4.0
-
 [node name="TargetEnemy" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_ax8nq")
 Speed = 50
 RushSpeed = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_quw8g")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -9, -5, 0, 0, -4, 5, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_6bnfh")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -9, -5, 0, 0, -2, 5, 0)

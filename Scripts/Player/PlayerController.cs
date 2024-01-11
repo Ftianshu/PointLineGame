@@ -64,29 +64,29 @@ namespace Survival
             if (GameEntry.Game.gamePause)
                 return;
 
-            if (Input.IsActionPressed("rush") && isRushOk)
-            {
-                isRushing = true;
-                isRushOk = false;
-                currentLine = GameEntry.Entity.CreatePlayerLine();
-                GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
-                GetNode<Timer>("RushTimer").Start();
-                GetNode<Timer>("RushingTimer").Start();
-            }
+            // if (Input.IsActionPressed("rush") && isRushOk)
+            // {
+            //     isRushing = true;
+            //     isRushOk = false;
+            //     currentLine = GameEntry.Entity.CreatePlayerLine();
+            //     GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+            //     GetNode<Timer>("RushTimer").Start();
+            //     GetNode<Timer>("RushingTimer").Start();
+            // }
 
-            if (isRushing)
-            {
-                Vector2 vector = Vector2.Zero;
+            // if (isRushing)
+            // {
+            //     Vector2 vector = Vector2.Zero;
 
-                vector.Y = -RushSpeed * MathF.Cos(Rotation);
-                vector.X = RushSpeed * MathF.Sin(Rotation);
+            //     vector.Y = -RushSpeed * MathF.Cos(Rotation);
+            //     vector.X = RushSpeed * MathF.Sin(Rotation);
 
-                Velocity = vector;
+            //     Velocity = vector;
 
-                MoveAndSlide();
+            //     MoveAndSlide();
 
-                return;
-            }
+            //     return;
+            // }
 
             if (Input.IsActionPressed("speed_up"))
             {
@@ -125,7 +125,7 @@ namespace Survival
 
         private void AddPointToLine(Vector2 position)
         {
-            GameEntry.Entity.AddLinePoint(position, currentLine);
+            GameEntry.Entity.AddPlayerLinePoint(position, currentLine);
             // GameEntry.Entity.CreatePoint("points", position);
             // GameEntry.Face.AddPoint(position, (int)FaceId.PlayerFace, currentLine);
         }

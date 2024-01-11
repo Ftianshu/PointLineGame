@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8wk0lvexwubf"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/PreEnemy.cs" id="1_mvqhj"]
+[ext_resource type="Texture2D" uid="uid://dyj743olse1hm" path="res://Sprites/preEnmey.png" id="1_v2odi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fkvm"]
+radius = 4.0
+
+[node name="PreEnemy" type="Area2D"]
+script = ExtResource("1_mvqhj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-07, -1.19209e-07)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("1_v2odi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3fkvm")
+
+[node name="Timer" type="Timer" parent="."]

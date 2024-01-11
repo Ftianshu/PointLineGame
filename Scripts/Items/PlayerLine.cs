@@ -6,6 +6,11 @@ namespace Survival
 {
     public partial class PlayerLine : Line
     {
+        public override void OnInit()
+        {
+            faceId = 0;
+        }
+
         public override void OnEnemyEnter(Area2D area)
         {
 
@@ -19,7 +24,7 @@ namespace Survival
         public override void OnPlayerEnter(Node2D body)
         {
             // 平面连接
-            // GD.Print("plas");
+            //GD.Print("plas");
             PlayerController player = body as PlayerController;
             if (player.currentLine == lineId)
             {

@@ -78,6 +78,7 @@ namespace Survival
                 int start = linkPoints[0].lineId1 == line.lineId ? line.GetPointIndex(linkPoints[0].point1) : line.GetPointIndex(linkPoints[0].point2);
                 int end = linkPoints[1].lineId1 == line.lineId ? line.GetPointIndex(linkPoints[1].point1) : line.GetPointIndex(linkPoints[1].point2);
 
+                GD.Print(start, end);
                 if (start < end)
                     for (int i = start; i < end; i++)
                     {
@@ -93,7 +94,6 @@ namespace Survival
                 // //根据连接点找到下一条线段
                 line = linkPoints[1].lineId1 == line.lineId ? GameEntry.Entity.GetLine(linkPoints[1].lineId2) : GameEntry.Entity.GetLine(linkPoints[1].lineId1);
             } while (line != startLine);
-
             return points.ToArray();
         }
 

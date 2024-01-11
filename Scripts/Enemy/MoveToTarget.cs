@@ -23,7 +23,9 @@ namespace Survival
             }
 
             Vector2 direct = me.Target - me.Position;
-            GameEntry.Entity.AddLinePoint(me.Position, me.lineId);
+
+            me.Rotation = MathF.Atan2(direct.X, -direct.Y);
+            GameEntry.Entity.AddEnemyLinePoint(me.Position, me.lineId);
             me.Position += direct.Normalized() * me.Speed * (float)delta;
         }
     }

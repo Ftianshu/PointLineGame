@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsydlqp735ccy" path="res://UIItems/RoleData.tscn" id="4_mwny6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diov0"]
-bg_color = Color(0.407843, 0.407843, 0.407843, 1)
+bg_color = Color(0.305882, 0.305882, 0.305882, 0.729412)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v3uwa"]
 shader = ExtResource("3_2gd86")

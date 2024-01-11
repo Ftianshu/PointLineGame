@@ -11,7 +11,7 @@ namespace Survival
     {
         public int currentWave = 0;
         public float lineDamage = 5;
-        public float pointLife = 8f;
+        public float pointLife = 10f;
 
         private double nextEnemyTime = double.MaxValue;
 
@@ -92,19 +92,8 @@ namespace Survival
                     }
                 case "随机位置":
                     {
-                        if (EnemyMessage[currentIndex].Target != new Vector2(-10000, -10000))
-                        {
-                            TargetEnemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as TargetEnemy;
-                            enemy.Position = EnemyMessage[currentIndex].Position;
-                            enemy.SetTarget(EnemyMessage[currentIndex].Target);
-                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
-                        }
-                        else
-                        {
-                            Enemy enemy = GameEntry.Entity.CreateEnemy(EnemyMessage[currentIndex].AssetName) as Enemy;
-                            enemy.Position = EnemyMessage[currentIndex].Position;
-                            enemy.Connect("enemyDeath", new Callable(this, "OnEnemyDeath"));
-                        }
+                        // 生成位置标记
+
                         break;
                     }
             }

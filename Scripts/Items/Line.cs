@@ -33,7 +33,11 @@ namespace Survival
             BodyExited += OnPlayerExit;
             AreaEntered += OnEnemyEnter;
             AreaExited += OnEnemyExit;
+            OnInit();
         }
+
+
+        public abstract void OnInit();
 
         public abstract void OnEnemyEnter(Area2D area);
 
@@ -44,7 +48,7 @@ namespace Survival
         public abstract void OnPlayerExit(Node2D body);
 
 
-        public void AddPoint(Vector2 position)
+        public void AddPoint(Vector2 position, float pointLife)
         {
             if (lastPoint.DistanceTo(position) < 2)
                 return;
@@ -67,7 +71,7 @@ namespace Survival
             lastPoint = position;
 
             Timer timer = new Timer();
-            timer.WaitTime = 8f;
+            timer.WaitTime = pointLife;
             timer.Autostart = true;
             timer.Timeout += DisableCollision;
             Timers.AddChild(timer);
@@ -110,25 +114,26 @@ namespace Survival
                 }
             }
             //错误结果
-            return -1;
+            return line.Points.Length;
         }
 
         public Vector2 GetRecentPoint(Vector2 point)
         {
-            float lastDistance = float.MaxValue;
+            // float lastDistance = float.MaxValue;
             for (int i = 0; i < line.Points.Length; i++)
             {
                 float distance = point.DistanceSquaredTo(line.Points[i]);
-                if (distance < lastDistance)
-                {
-                    lastDistance = distance;
-                }
-                else if (distance < 25)
+                // if (distance < lastDistance)
+                // {
+                //     lastDistance = distance;
+                // }
+
+                if (distance < 100)
                 {
                     return line.Points[i];
                 }
             }
-            return point;
+            return line.Points[^1];
         }
 
 

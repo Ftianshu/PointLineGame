@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Items/EnemyLine.cs" id="1_0ro4u"]
 
 [node name="EnemyLine" type="Area2D"]
+collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_0ro4u")
 
 [node name="Line2D" type="Line2D" parent="."]
