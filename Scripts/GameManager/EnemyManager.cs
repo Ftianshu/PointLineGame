@@ -93,7 +93,10 @@ namespace Survival
                 case "随机位置":
                     {
                         // 生成位置标记
+                        PreEnemy preEnemy = GameEntry.Entity.CreateEnemy("PreEnemy") as PreEnemy;
+                        preEnemy.AssetName = EnemyMessage[currentIndex].AssetName;
 
+                        preEnemy.Position = GetRandomPosition();
                         break;
                     }
             }
@@ -101,6 +104,11 @@ namespace Survival
             nextEnemyTime = EnemyMessage[currentIndex].NextEnemyTime;
             currentIndex++;
 
+        }
+
+        private Vector2 GetRandomPosition()
+        {
+            return new Vector2(GD.Randf() * 1152 - 576, GD.Randf() * 648 - 324);
         }
 
         private void UpdateWave()

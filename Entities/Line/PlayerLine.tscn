@@ -8,6 +8,8 @@ collision_mask = 5
 script = ExtResource("1_0m017")
 
 [node name="Line2D" type="Line2D" parent="."]
+z_index = -1
 width = 3.0
+default_color = Color(0.972549, 0.972549, 0.972549, 0.941176)
 
 [node name="Timers" type="Node" parent="."]

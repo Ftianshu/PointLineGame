@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ds07ctn638rfa"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/OrdinaryEnemy.cs" id="1_2p3rj"]
-[ext_resource type="Texture2D" uid="uid://sbxlxx1eoshc" path="res://Sprites/Circle.png" id="2_62gdx"]
+[ext_resource type="Texture2D" uid="uid://cqrvh4f2uupqt" path="res://Sprites/Ordinary.png" id="2_5xdck"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qxfx"]
 radius = 5.0
@@ -19,6 +19,5 @@ Speed = 50
 shape = SubResource("CircleShape2D_4qxfx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.1, 0.2)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_62gdx")
+scale = Vector2(0.0605, 0.061)
+texture = ExtResource("2_5xdck")

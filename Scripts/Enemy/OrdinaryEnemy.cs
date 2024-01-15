@@ -65,9 +65,12 @@ namespace Survival
 
         public override void OnBeAttacked(Area2D area)
         {
-            if (area.GetType().ToString() == "Survival.Face")
+            if (area.GetType().Name == "Face")
             {
-                HP -= (area as Face).GetDamage();
+                if ((area as Face).faceId != 1)
+                {
+                    HP -= (area as Face).GetDamage();
+                }
             }
         }
     }

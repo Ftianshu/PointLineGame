@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6f3d7p7rbnm7"]
+[gd_scene load_steps=5 format=3 uid="uid://b6f3d7p7rbnm7"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_o5d5y"]
+[ext_resource type="Texture2D" uid="uid://dkqip3lpa2hr3" path="res://Sprites/Player.png" id="2_6xlgh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1c6g"]
 radius = 2.0
@@ -12,11 +13,8 @@ radius = 40.0125
 collision_mask = 0
 script = ExtResource("1_o5d5y")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(0, 19)
-polygon = PackedVector2Array(0, -31, -8, -14, 0, -19, 8, -14)
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 amount = 100
 direction = Vector2(0, 1)
 spread = 30.0
@@ -41,3 +39,8 @@ one_shot = true
 [node name="RushingTimer" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.95911e-07, -5)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_6xlgh")

@@ -39,7 +39,7 @@ namespace Survival
             GameEntry.Player.CreatePlayer();
 
             //创建坐标系
-            GameEntry.Entity.CreateCoordinate();
+            //GameEntry.Entity.CreateCoordinate();
 
             //打开UI
             GameEntry.UI.OpenUIForm(UIFormId.GamingUI);

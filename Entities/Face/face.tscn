@@ -14,5 +14,6 @@ script = ExtResource("1_t8klh")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_8r85o")
+color = Color(0.486275, 0.247059, 0.345098, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

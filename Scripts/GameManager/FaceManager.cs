@@ -20,7 +20,7 @@ namespace Survival
             {
                 // TODO: 生成平面
                 GD.Print("生成平面");
-                GameEntry.Entity.CreateFace("face", GetFacePoints(line1));
+                GameEntry.Entity.CreateFace("face", GetFacePoints(line1), line1.faceId);
                 // 清楚所有点、线
                 GameEntry.Entity.ResetFaceLine(line1.faceId);
                 return;
@@ -35,6 +35,7 @@ namespace Survival
 
         public Vector2[] GetFacePoints(Line2D line, int start)
         {
+            //GD.Print(start, "--&--", line.Points.Length);
             Vector2[] points = new Vector2[line.Points.Length - start - 1];
             for (int i = 0; i < points.Length; i++)
             {
@@ -78,7 +79,7 @@ namespace Survival
                 int start = linkPoints[0].lineId1 == line.lineId ? line.GetPointIndex(linkPoints[0].point1) : line.GetPointIndex(linkPoints[0].point2);
                 int end = linkPoints[1].lineId1 == line.lineId ? line.GetPointIndex(linkPoints[1].point1) : line.GetPointIndex(linkPoints[1].point2);
 
-                GD.Print(start, end);
+                // GD.Print(start, end);
                 if (start < end)
                     for (int i = start; i < end; i++)
                     {

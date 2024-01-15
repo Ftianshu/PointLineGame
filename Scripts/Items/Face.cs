@@ -11,7 +11,7 @@ namespace Survival
 
         public Polygon2D polygonShape;
 
-        private double Lifetime = 0.1;
+        private double Lifetime = 2;
 
         // 代表阵营
         public int faceId;

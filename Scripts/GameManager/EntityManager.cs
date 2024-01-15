@@ -104,7 +104,7 @@ namespace Survival
             Line n = (Line)entity.Instantiate();
             n.lineId = lineCout;
             n.faceId = 1;
-            n.GetNode<Line2D>("Line2D").DefaultColor = new Color(255, 0, 255);
+            //n.GetNode<Line2D>("Line2D").DefaultColor = new Color(255, 0, 255);
             LineRoot.AddChild(n);
             n.Name = lineCout.ToString();
             lines.Add(lineCout, n);
@@ -177,11 +177,11 @@ namespace Survival
             lines[lineId].AddPoint(position, GameEntry.Enemy.pointLife);
         }
 
-        public void CreateFace(string AssetName, Vector2[] points, FaceId faceId = FaceId.PlayerFace)
+        public void CreateFace(string AssetName, Vector2[] points, int faceId = 0)
         {
             var entity = GD.Load<PackedScene>(AssetUtility.GetFaceAsset(AssetName));
             Face n = (Face)entity.Instantiate();
-            n.faceId = (int)faceId;
+            n.faceId = faceId;
             n.points = points;
             FaceRoot.AddChild(n);
         }
