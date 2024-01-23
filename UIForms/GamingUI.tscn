@@ -34,9 +34,13 @@ text = "00:00"
 
 [node name="WaveCount" type="Label" parent="."]
 self_modulate = Color(0.937255, 0.937255, 0.937255, 1)
-layout_mode = 0
-offset_left = 555.0
-offset_top = 33.0
-offset_right = 596.0
-offset_bottom = 59.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 35.0
+offset_right = 20.0
+offset_bottom = 61.0
+grow_horizontal = 2
 text = "第x波"

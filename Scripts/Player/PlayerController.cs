@@ -119,15 +119,8 @@ namespace Survival
             Velocity = vector2;
 
             MoveAndSlide();
-            AddPointToLine(Position);
-
-        }
-
-        private void AddPointToLine(Vector2 position)
-        {
-            GameEntry.Entity.AddPlayerLinePoint(position, currentLine);
-            // GameEntry.Entity.CreatePoint("points", position);
-            // GameEntry.Face.AddPoint(position, (int)FaceId.PlayerFace, currentLine);
+            GameEntry.Entity.AddPlayerLinePoint(Position, currentLine);
+            //GetNode<Camera2D>("Camera2D").Position = Position;
         }
     }
 }

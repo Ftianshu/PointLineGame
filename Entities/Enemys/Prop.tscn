@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://xoa7xs31l11v"]
+
+[ext_resource type="Texture2D" uid="uid://hj14ttryfkan" path="res://Sprites/shilaimu.png" id="1_pl5gy"]
+[ext_resource type="Script" path="res://Scripts/Enemy/PropEnemy.cs" id="1_srkfp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwrvf"]
+
+[node name="Prop" type="Area2D"]
+script = ExtResource("1_srkfp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pl5gy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vwrvf")

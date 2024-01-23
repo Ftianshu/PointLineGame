@@ -108,7 +108,7 @@ namespace Survival
 
         private Vector2 GetRandomPosition()
         {
-            return new Vector2(GD.Randf() * 1152 - 576, GD.Randf() * 648 - 324);
+            return new Vector2(GD.Randf() * 400 - 200, GD.Randf() * 400 - 200);
         }
 
         private void UpdateWave()
@@ -118,6 +118,9 @@ namespace Survival
 
         public override void _Process(double delta)
         {
+            if (GameEntry.Game.gamePause)
+                return;
+
             timeDelta += delta;
             if (timeDelta > nextEnemyTime && currentIndex < EnemyMessage.Count)
             {

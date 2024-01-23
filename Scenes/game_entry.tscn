@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlaiwspell1ir"]
+[gd_scene load_steps=10 format=3 uid="uid://dlaiwspell1ir"]
 
 [ext_resource type="Script" path="res://Scripts/GameFramework/GameEntry.cs" id="1_ccdyu"]
 [ext_resource type="Script" path="res://Scripts/GameManager/EnemyManager.cs" id="2_6lwwv"]
@@ -22,6 +22,18 @@ angle_max = 60.0
 scale_min = 2.0
 scale_max = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqyhm"]
+size = Vector2(25, 421)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik0p7"]
+size = Vector2(21, 417)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp1n7"]
+size = Vector2(422, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27hck"]
+size = Vector2(422, 20)
+
 [node name="GameEntry" type="Node"]
 script = ExtResource("1_ccdyu")
 
@@ -41,6 +53,26 @@ visibility_rect = Rect2(0, 0, 1200, 800)
 z_index = -2
 scale = Vector2(1.142, 1.118)
 texture = ExtResource("2_x2jih")
+
+[node name="Border" type="StaticBody2D" parent="MapRoot"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="Left" type="CollisionShape2D" parent="MapRoot/Border"]
+position = Vector2(-210.5, 11.5)
+shape = SubResource("RectangleShape2D_lqyhm")
+
+[node name="Right" type="CollisionShape2D" parent="MapRoot/Border"]
+position = Vector2(215.5, -8.5)
+shape = SubResource("RectangleShape2D_ik0p7")
+
+[node name="Top" type="CollisionShape2D" parent="MapRoot/Border"]
+position = Vector2(-9, -208.5)
+shape = SubResource("RectangleShape2D_bp1n7")
+
+[node name="Top2" type="CollisionShape2D" parent="MapRoot/Border"]
+position = Vector2(14, 210)
+shape = SubResource("RectangleShape2D_27hck")
 
 [node name="SkillTimerRoot" type="Node" parent="."]
 
@@ -63,6 +95,3 @@ y_sort_enabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xdl50")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.4, 1.4)
